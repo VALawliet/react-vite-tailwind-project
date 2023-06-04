@@ -1,9 +1,11 @@
-
+import { Navbar } from "../../Components/Navbar"
+import { Layout } from "../../Components/Layout"
 function MyOrder(){
     return(
-        <div className="bg-red-100">
+        
+        <Layout>
             My Order
-        </div>
+        </Layout>
     )
 }
 

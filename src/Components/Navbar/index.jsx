@@ -86,7 +86,7 @@ function Navbar(){
 
     ]
     return(
-        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-base font-medium">
+        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-base font-medium top-0">
             <ul className="flex items-center gap-3">
                 {menu1.map((element)=>{
                     return(

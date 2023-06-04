@@ -9,6 +9,7 @@ import { SignIn } from '../SignIn'
 import { Navbar } from '../../Components/Navbar'
 
 
+
 const AppRoutes = ()=>{
   let routes = useRoutes([
     { path: '/', element: <Home/> },
@@ -26,7 +27,8 @@ function App() {
   return (
     <BrowserRouter>
       <AppRoutes/>
-      <Navbar/>
+      <Navbar/> 
+      
     </BrowserRouter>
   )
 }

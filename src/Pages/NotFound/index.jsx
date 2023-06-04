@@ -1,9 +1,12 @@
+import { Layout } from "../../Components/Layout"
+import { Navbar } from "../../Components/Navbar"
 
 function NotFound(){
     return(
-        <div className="bg-red-100">
+        
+        <Layout>
             404
-        </div>
+        </Layout>
     )
 }
 
