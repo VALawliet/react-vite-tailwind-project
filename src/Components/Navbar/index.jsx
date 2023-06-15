@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { ShoppingCartContext } from "../../Context";
+import { useContext } from "react";
 
 function Navbar(){
 
     const activeStyle = 'underline underline-offset-4';
+    const contexto_uwu = useContext(ShoppingCartContext)
 
     const menu1 = [
         {
@@ -74,7 +77,7 @@ function Navbar(){
         },
 
         {
-            name: 'Carrito gei 0',
+            name: 'Carrito gei',
             className: ''
         }
 
@@ -110,9 +113,9 @@ function Navbar(){
                         return(
                             <li key = {element.name}className={element.className}>{element.name}</li>
                         )
-                    }else if(element.name == 'Carrito gei 0'){
+                    }else if(element.name == 'Carrito gei'){
                         return(
-                            <li key = {element.name}>{element.name}</li>
+                            <li key = {element.name}>{`${element.name} ${contexto_uwu.counter}`}</li>
                         )
                     }else{
                         return(
