@@ -4,7 +4,7 @@ import { useContext } from 'react'
 
 function ProductDetail(){
     const context = useContext(ShoppingCartContext);
-    console.log('PRODUCT TO SHOW: ', context.productToShow)
+    
     
     return(
         <aside className= {`${context.isProductDetailOpen ? 'flex' : 'hidden' } w-[360px] h-[calc(100vh-68px)] flex-col fixed bg-white top-[68px] right-0 border border-black rounded-lg z-10 overflow-y-auto`}>
