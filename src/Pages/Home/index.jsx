@@ -1,13 +1,14 @@
 
 import { Cards } from "../../Components/Cards"
 import { Layout } from "../../Components/Layout"
+import { ProductDetail } from "../../Components/Productdetail"
 import { useState, useEffect } from "react"
 
 
 
 
 function Home(){
-    const url = 'https://api.escuelajs.co/api/v1/products'
+    const url = 'https://fakestoreapi.com/products'
 
     const [items, setItems] = useState([])
     
@@ -31,13 +32,17 @@ function Home(){
     return(
         <Layout>
             Home
-            <section className='flex w-full h-auto flex-wrap justify-around'>
+            <section className='flex w-4/6 h-auto flex-wrap justify-around'>
                 {items?.map((product)=>{
                         
-                        return(<Cards itemID = {product?.id}key={product?.id} category={product?.category?.name} img={product?.images[0]} product={product?.title} price={product?.price}/>)
+                        return(<Cards itemID = {product?.id}key={product?.id} category={product?.category} img={product?.image} product={product?.title} price={product?.price} description = {product?.description}/>)
                     
                 })}
+
+                <ProductDetail/>
             </section>
+
+            
         </Layout>
     )
 }

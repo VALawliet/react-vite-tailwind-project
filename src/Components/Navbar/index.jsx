@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import { useContext } from "react";
+import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
 function Navbar(){
 
@@ -78,6 +79,7 @@ function Navbar(){
 
         {
             name: 'Carrito gei',
+            icon: ShoppingCartIcon,
             className: ''
         }
 
@@ -115,7 +117,7 @@ function Navbar(){
                         )
                     }else if(element.name == 'Carrito gei'){
                         return(
-                            <li key = {element.name}>{`${element.name} ${contexto_uwu.counter}`}</li>
+                            <li key = {element.name} className='flex row flex-wrap justify-between'> <ShoppingCartIcon className='block h-6 w-8 text-black-500 cursor-pointer'/> {contexto_uwu.counter}</li>
                         )
                     }else{
                         return(
