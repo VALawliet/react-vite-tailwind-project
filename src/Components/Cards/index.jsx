@@ -2,17 +2,12 @@ import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 
 
-function Cards({category, img, product, price, description, amount, setItems, deepCopy}){
+function Cards({category, img, product, price, description, amount, deepCopy}){
     const context = useContext(ShoppingCartContext);
     const showProduct = ()=>{
-        const data = {
-            productCategory: category,
-            productImg: img,
-            productName: product,
-            productPrice: price,
-            productDescription: description,
-            productAmount: amount
-        }
+        const data = deepCopy.filter((element)=>{
+            return element?.title == product
+        })
 
         context.setProductToShow(data)
         context.openProductDetail() 
@@ -86,7 +81,7 @@ function Cards({category, img, product, price, description, amount, setItems, de
                         })
 
                         
-                        setItems(newDataList)
+                        context.setItems(newDataList)
 
                         
                         

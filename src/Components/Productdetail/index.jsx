@@ -16,21 +16,23 @@ function ProductDetail(){
             </div>
 
             <figure className='px-6'>
-                <img className='w-full h-full object-cover rounded-lg' src= {context.productToShow.productImg} alt = {context.productToShow.productName}/>
+                <img className='w-full h-full object-cover rounded-lg' src= {context.productToShow[0]?.image} alt = {context.productToShow[0]?.title}/>
 
             </figure>
             <div className='flex flex-row flex-wrap p-4'>
                 <h3 className='w-full text-center text-black-500 font-semibold'>
-                    {context.productToShow.productName}
+                    {context.productToShow[0]?.title}
                 </h3>
 
                 <span className='text-center my-3'>
-                    {context.productToShow.productDescription}
+                    {context.productToShow[0]?.description}
                 </span>
 
                 <span className=' w-full text-center my-3 flex flex-row flex-wrap justify-center'>
-                    <p>Price: </p> <p className='mx-2 font-semibold'> {context.productToShow.productPrice}$</p>
+                    <p>Price: </p> <p className='mx-2 font-semibold'> {context.productToShow[0]?.price}$</p>
                 </span>
+
+                <span className={context.productToShow[0]?.amount ? 'w-full text-center my-3 flex flex-row flex-wrap justify-center' : 'w-full text-center my-3 flex flex-row flex-wrap justify-center text-red-600'}>{context.productToShow[0]?.amount ? `There are ${context.productToShow[0]?.amount} unities left` : 'Sold Out'}</span>
             </div>
             
         </aside>

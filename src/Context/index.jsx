@@ -1,10 +1,39 @@
 import { createContext, useState } from "react";
+import { useEffect } from "react";
 
 const ShoppingCartContext = createContext();
 
 function ShoppingCartProvider({children}){
     
-   
+    const url = 'https://fakestoreapi.com/products'
+
+    const [items, setItems] = useState([]);
+    
+    
+    useEffect(()=>{
+        const responseFetch = async ()=>{
+            try{
+                const response = await fetch(url);
+                const responseJSON = await response.json();
+                const deepCopy = [...responseJSON];
+                const newItems = deepCopy.map((element)=>{
+                    element.amount = 3;
+                    return element
+                })
+                console.log(newItems)
+                setItems(newItems);
+                
+            }catch (err) {
+                console.log(err)
+            }
+
+        }
+
+        responseFetch();
+        
+
+    }, [])
+    console.log(items)
     const [isProductDetailOpen, setProductDetailOpen] = useState(false);
     const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
@@ -68,12 +97,49 @@ function ShoppingCartProvider({children}){
 
     function deletingProduct(data){
         const deleteThisProduct = [...productToAdd];
-        const productDelete = deleteThisProduct.filter((element)=>{
-            return element?.mainProduct?.productName != data.productName
-        })
+        const newItems1 = [...items]
         
-        console.log(productDelete)
-        setProductToAdd(productDelete)
+        const deletingAmount = deleteThisProduct.map((element)=>{
+            if(element?.mainProduct?.productName == data.productName){
+
+                if(element.amount > 1){
+                    element.amount = element.amount - 1;
+                    return element
+                }else{
+                    return {...element, valueDetect: true}
+                }
+            }
+            
+        })
+        console.log('seeing the thing itself')
+        console.log(deletingAmount)
+
+
+
+        const deletingWholeProduct = deletingAmount.filter((element)=>{
+            return element?.valueDetect != true
+        })
+        console.log('working?')
+
+        if(deleteThisProduct.length > 0){
+            
+            const newItems2 = newItems1.map((element)=>{
+                if(element?.title == data.productName){
+                    element.amount = element.amount + 1;
+                        return element
+                }else{
+                    return element
+                }
+            })
+            console.log('new Items')
+            console.log(newItems2)
+            setItems(newItems2)
+        }
+        
+        setProductToAdd(deletingWholeProduct)
+        
+        
+        
     }
     //Product Detail showing products
     const openProductDetail = ()=>{
@@ -95,7 +161,9 @@ function ShoppingCartProvider({children}){
             addingProduct,
             deletingProduct,
             counter, 
-            setCounter
+            setCounter,
+            setItems, 
+            items
         }}>
             {children}
         </ShoppingCartContext.Provider>
