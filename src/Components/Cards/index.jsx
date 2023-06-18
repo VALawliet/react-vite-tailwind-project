@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 
 
-function Cards({category, img, product, price, description}){
+function Cards({category, img, product, price, description, amount, setItems, deepCopy}){
     const context = useContext(ShoppingCartContext);
     const showProduct = ()=>{
         const data = {
@@ -10,7 +10,8 @@ function Cards({category, img, product, price, description}){
             productImg: img,
             productName: product,
             productPrice: price,
-            productDescription: description
+            productDescription: description,
+            productAmount: amount
         }
 
         context.setProductToShow(data)
@@ -35,24 +36,59 @@ function Cards({category, img, product, price, description}){
                             productCategory: category,
                             productImg: img,
                             productPrice: price,
-                            productDescription: description
+                            productDescription: description,
+                            productAmount: amount - 1
                         }
-                        console.log('click');
+
+                        const newDataList = deepCopy.map((product)=>{
+                            if(product?.title == data.productName || product?.productName == data.productName){
+                                if(product.amount > 0){
+                                    product.amount = amount - 1;
+                                    context.setCounter(context.counter + 1);
+
+                                    switch (product.amount){
+                                        case 0:
+                                            context.addingProduct({
+                                                mainProduct: data,
+                                                amount: 3
+                                            });
+
+                                            break
+                                        
+                                        case 1:
+                                            context.addingProduct({
+                                                mainProduct: data,
+                                                amount: 2
+                                            })
+                                            
+                                            break
+                                        case 2:
+                                            context.addingProduct({
+                                                mainProduct: data,
+                                                amount: 1
+                                            })
+
+                                            break
+
+                                        default:
+                                            break
+                                    }
+                                    
+                                }else{
+                                    alert('yata, bro')
+                                }
+                                
+                                
+                                
+                            }
+
+                            return product
+                        })
 
                         
+                        setItems(newDataList)
 
-                        const values = context.productToAdd.filter((element)=>{
-                            return element.productName == data.productName
-                            
-                        })
-                        console.log(values)
-
-                        if(values.length >= 1){
-                            alert('yata, bro')
-                        }else{
-                            context.addingProduct(data)
-                        }
-
+                        
                         
                     }}>
                     <span className='block h-[27px]'>+</span>
@@ -72,6 +108,7 @@ function Cards({category, img, product, price, description}){
                     
                 }}>{product}</span>
                 <span className='text-lg font-medium'>{price}$</span>
+                <span>{amount}</span>
             </p>
         </div>
     )

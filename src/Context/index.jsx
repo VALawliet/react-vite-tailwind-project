@@ -6,6 +6,7 @@ function ShoppingCartProvider({children}){
     
    
     const [isProductDetailOpen, setProductDetailOpen] = useState(false);
+    const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
     const [productToAdd, setProductToAdd] = useState([]);
     
@@ -13,15 +14,62 @@ function ShoppingCartProvider({children}){
     //Adding products to the shopping cart for checkout 
     function addingProduct(data){
         const productsToAdd = [...productToAdd];
-        productsToAdd.push(data);
-        console.log(productsToAdd);
-        setProductToAdd(productsToAdd);
+        
+
+        if(productsToAdd.length == 0){
+            console.log('pushing')
+            productsToAdd.push(data);
+            console.log(productsToAdd)
+            
+            setProductToAdd(productsToAdd)
+        }else{
+            const modifier = productsToAdd.map((element)=>{
+                
+                if(data.mainProduct.productName == element?.mainProduct?.productName){
+                    console.log('enter')
+                    element.amount = data.amount;
+                    return element
+                }else{
+                    return element
+                }
+                
+            })
+
+            const filtro = modifier.filter((element)=>{
+                if(element?.mainProduct?.productName == data.mainProduct.productName){
+                    return element
+                }
+            })
+
+            if(filtro.length == 0){
+                console.log('filtro')
+                productsToAdd.push(data);
+                console.log(productsToAdd)
+                setProductToAdd(productsToAdd)
+            }else{
+                console.log('trying to add the modifier')
+                console.log(modifier)
+                setProductToAdd(modifier);
+            }
+
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
     }
 
     function deletingProduct(data){
         const deleteThisProduct = [...productToAdd];
         const productDelete = deleteThisProduct.filter((element)=>{
-            return element.productName != data.productName
+            return element?.mainProduct?.productName != data.productName
         })
         
         console.log(productDelete)
@@ -45,7 +93,9 @@ function ShoppingCartProvider({children}){
             setProductToShow,
             productToAdd,
             addingProduct,
-            deletingProduct
+            deletingProduct,
+            counter, 
+            setCounter
         }}>
             {children}
         </ShoppingCartContext.Provider>
