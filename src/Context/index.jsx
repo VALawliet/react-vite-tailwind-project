@@ -35,6 +35,7 @@ function ShoppingCartProvider({children}){
     }, [])
     console.log(items)
     const [isProductDetailOpen, setProductDetailOpen] = useState(false);
+    const [isShoppingCartOpen, setShoppingCartOpen] = useState(false)
     const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
     const [productToAdd, setProductToAdd] = useState([]);
@@ -102,12 +103,15 @@ function ShoppingCartProvider({children}){
         const deletingAmount = deleteThisProduct.map((element)=>{
             if(element?.mainProduct?.productName == data.productName){
 
-                if(element.amount > 1){
+                if(element.amount >= 2){
                     element.amount = element.amount - 1;
                     return element
                 }else{
+                    element.amount = element.amount - 1
                     return {...element, valueDetect: true}
                 }
+            }else{
+                return element
             }
             
         })
@@ -125,14 +129,28 @@ function ShoppingCartProvider({children}){
             
             const newItems2 = newItems1.map((element)=>{
                 if(element?.title == data.productName){
-                    element.amount = element.amount + 1;
+                    if(element.amount < 3){
+                        element.amount = element.amount + 1;
                         return element
+                    }else{
+                        return element
+                    }
+                    
                 }else{
                     return element
                 }
             })
+
+            const itemToDeleteIndex = newItems2.findIndex((element)=>{
+                return element?.title == data.productName
+            })
+
+            if(newItems2[itemToDeleteIndex].amount <= 3){
+                setCounter(counter - 1)
+            }
             console.log('new Items')
             console.log(newItems2)
+            
             setItems(newItems2)
         }
         
@@ -144,10 +162,22 @@ function ShoppingCartProvider({children}){
     //Product Detail showing products
     const openProductDetail = ()=>{
         setProductDetailOpen(true);
+        setShoppingCartOpen(false)
     }
 
     const closeProductDetail = ()=>{
         setProductDetailOpen(false);
+    }
+
+    //Shopping Cart Opening and closing
+
+    const openShoppingCart = () =>{
+        setShoppingCartOpen(true);
+        setProductDetailOpen(false)
+    }
+
+    const closeShoppingCart = ()=>{
+        setShoppingCartOpen(false)
     }
     
     return(
@@ -155,6 +185,9 @@ function ShoppingCartProvider({children}){
             openProductDetail,
             closeProductDetail,
             isProductDetailOpen,
+            isShoppingCartOpen,
+            openShoppingCart,
+            closeShoppingCart,
             productToShow,
             setProductToShow,
             productToAdd,

@@ -1,5 +1,6 @@
 
 import { Cards } from "../../Components/Cards"
+import { Cart } from "../../Components/Cart"
 import { Layout } from "../../Components/Layout"
 import { ProductDetail } from "../../Components/Productdetail"
 import { ShoppingCartContext } from "../../Context"
@@ -20,7 +21,7 @@ function Home(){
     return(
         <Layout>
             Home
-            <section className='flex w-4/6 h-auto flex-wrap justify-around'>
+            <section className='flex w-9/12 h-auto flex-wrap justify-around'>
                 {deepCopy1?.map((product)=>{
                         
                         return(<Cards itemID = {product?.id}key={product?.id} category={product?.category} img={product?.image} product={product?.title} price={product?.price} description = {product?.description} amount = {product?.amount} deepCopy = {deepCopy1}/>)
@@ -28,6 +29,7 @@ function Home(){
                 })}
 
                 <ProductDetail/>
+                <Cart/>
             </section>
 
             

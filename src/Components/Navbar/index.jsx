@@ -91,7 +91,7 @@ function Navbar(){
 
     ]
     return(
-        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-base font-medium top-0">
+        <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-base font-medium top-0 bg-white">
             <ul className="flex items-center gap-3">
                 {menu1.map((element)=>{
                     return(
@@ -101,6 +101,10 @@ function Navbar(){
                                     return isActive ? activeStyle : undefined 
                                 }
                                 
+                            }} onClick={()=>{
+                                contexto_uwu.closeShoppingCart();
+                                contexto_uwu.closeProductDetail()
+
                             }}>
                                 {element.name}
                             </NavLink>
@@ -117,7 +121,10 @@ function Navbar(){
                         )
                     }else if(element.name == 'Carrito gei'){
                         return(
-                            <li key = {element.name} className='flex row flex-wrap justify-between'> <ShoppingCartIcon className='block h-6 w-8 text-black-500 cursor-pointer'/> {contexto_uwu.counter}</li>
+                            <li key = {element.name} className='flex row flex-wrap justify-between'> <ShoppingCartIcon onClick={()=>{
+                                {contexto_uwu.isShoppingCartOpen ? contexto_uwu.closeShoppingCart() : contexto_uwu.openShoppingCart()}
+                                
+                            }}className='block h-6 w-8 text-black-500 cursor-pointer'/> {contexto_uwu.counter}</li>
                         )
                     }else{
                         return(

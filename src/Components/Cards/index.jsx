@@ -14,11 +14,11 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
     }
     
     return(
-        <div className='bg-white cursor-pointer w-56 h-60 rounded-lg mb-5'
+        <div className='bg-teal-50 cursor-pointer w-60 h-60 rounded-lg mb-8'
             onClick={()=>{
                 showProduct()
             }}>
-            <figure className='relative mb-2 w-full h-4/5'>
+            <figure className='relative mb-2 w-full h-3/4'>
                 <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1'>{category}</span>
                 <img className='w-full h-full object-cover rounded-lg' src = {img} alt = 'headphones'/>
                 <button className='absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full' 
@@ -89,8 +89,8 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
                     <span className='block h-[27px]'>+</span>
                 </button>
             </figure>
-            <p className='flex justify-between'>
-                <span className='text-sm font-light' onClick={(event)=>{
+            <p className='flex flex-row flex-wrap justify-between'>
+                <span className='text-sm font-light w-[70%]' onClick={(event)=>{
                     event.stopPropagation();
                     const data = {
                         productName: product,
@@ -101,9 +101,9 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
                     }
                     context.deletingProduct(data);
                     
-                }}>{product}</span>
+                }}>{(product.length > 40) ? `${product.substr(0, 39)}...` : product }</span>
                 <span className='text-lg font-medium'>{price}$</span>
-                <span>{amount}</span>
+                
             </p>
         </div>
     )
