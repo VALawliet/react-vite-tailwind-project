@@ -39,6 +39,9 @@ function ShoppingCartProvider({children}){
     const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
     const [productToAdd, setProductToAdd] = useState([]);
+    const [checkOutProducts, setCheckOutProducts] = useState([]);
+    const [checkOutSum, setCheckOutSum] = useState(0);
+    const [totalPriceList, setTotalPriceList] = useState([])
     const [isActive, setActive] = useState(false);
     const [isTryingToDelete, setTryingToDelete] = useState(false);
     const [allDeleted, setAllDeleted] = useState(false)
@@ -192,6 +195,27 @@ function ShoppingCartProvider({children}){
             }
         }
     }
+
+    function addingProductsToCheckOut(){
+
+        
+           const newCheckOutProducts = [...productToAdd];
+            const newPriceList = newCheckOutProducts.map((element)=>{
+                return (element.mainProduct?.productPrice * element?.amount)
+               })
+            
+            const sumOfAllPrices = newPriceList.reduce((accumulator, currentvalue) => accumulator + currentvalue, 0);
+            console.log(sumOfAllPrices)
+            setCheckOutSum(parseInt(sumOfAllPrices.toFixed(2)));
+               
+            setTotalPriceList([...totalPriceList, parseFloat(sumOfAllPrices.toFixed(2))]);
+            console.log(totalPriceList)
+            setCheckOutProducts(newCheckOutProducts);
+            setProductToAdd([]);
+            setCounter(0)
+            
+        
+    }
     //Product Detail showing products
     const openProductDetail = ()=>{
         setProductDetailOpen(true);
@@ -237,7 +261,12 @@ function ShoppingCartProvider({children}){
             setTryingToDelete,
             allDeleted,
             setAllDeleted,
-            disablingAllButtons
+            disablingAllButtons,
+            checkOutProducts,
+            setCheckOutProducts,
+            addingProductsToCheckOut,
+            checkOutSum,
+            totalPriceList
         }}>
             {children}
         </ShoppingCartContext.Provider>

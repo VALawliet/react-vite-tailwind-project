@@ -1,6 +1,7 @@
 
 import { Cards } from "../../Components/Cards"
 import { Cart } from "../../Components/Cart"
+import { CheckOutView } from "../../Components/CheckOutView"
 import { Layout } from "../../Components/Layout"
 import { ProductDetail } from "../../Components/Productdetail"
 import { ShoppingCartContext } from "../../Context"
@@ -31,6 +32,8 @@ function Home(){
                 <ProductDetail/>
                 <Cart/>
             </section>
+
+            <CheckOutView/>
 
             
         </Layout>
