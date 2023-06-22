@@ -39,6 +39,7 @@ function ShoppingCartProvider({children}){
     const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
     const [productToAdd, setProductToAdd] = useState([]);
+    const [isActive, setActive] = useState(false)
     
 
     //Adding products to the shopping cart for checkout 
@@ -196,7 +197,9 @@ function ShoppingCartProvider({children}){
             counter, 
             setCounter,
             setItems, 
-            items
+            items,
+            isActive,
+            setActive
         }}>
             {children}
         </ShoppingCartContext.Provider>

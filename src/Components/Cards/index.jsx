@@ -20,8 +20,8 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
             }}>
             <figure className='relative mb-2 w-full h-3/4'>
                 <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1'>{category}</span>
-                <img className='w-full h-full object-cover rounded-lg' src = {img} alt = 'headphones'/>
-                <button className='absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full' 
+                <img className='w-full h-full object-cover rounded-lg' src = {img} alt = {product}/>
+                <button className={amount? 'absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full transition-all duration-300 hover:bg-lime-600 hover:text-white hover:font-semibold' : 'absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full transition-all duration-300 hover:bg-red-600 hover:text-white hover:font-semibold' } 
                     onClick={(event)=>{
                         event.stopPropagation();
                         
@@ -70,7 +70,7 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
                                     }
                                     
                                 }else{
-                                    alert('yata, bro')
+                                    context.setActive(true)
                                 }
                                 
                                 
