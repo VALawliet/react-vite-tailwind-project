@@ -122,7 +122,9 @@ function Navbar(){
                     }else if(element.name == 'Carrito gei'){
                         return(
                             <li key = {element.name} className='flex row flex-wrap justify-between'> <ShoppingCartIcon onClick={()=>{
+
                                 {contexto_uwu.isShoppingCartOpen ? contexto_uwu.closeShoppingCart() : contexto_uwu.openShoppingCart()}
+                                contexto_uwu.setTryingToDelete(false)
                                 
                             }}className='block h-6 w-8 text-black-500 cursor-pointer'/> {contexto_uwu.counter}</li>
                         )

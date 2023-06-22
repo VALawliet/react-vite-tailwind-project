@@ -39,7 +39,9 @@ function ShoppingCartProvider({children}){
     const [counter, setCounter] = useState(0)
     const [productToShow, setProductToShow] = useState({});
     const [productToAdd, setProductToAdd] = useState([]);
-    const [isActive, setActive] = useState(false)
+    const [isActive, setActive] = useState(false);
+    const [isTryingToDelete, setTryingToDelete] = useState(false);
+    const [allDeleted, setAllDeleted] = useState(false)
     
 
     //Adding products to the shopping cart for checkout 
@@ -160,6 +162,36 @@ function ShoppingCartProvider({children}){
         
         
     }
+
+    function deletingAllProducts(){
+        const returningBackToNormal = [...items];
+        const backToOriginalAmounts = returningBackToNormal.map((element)=>{
+            if(element.amount <= 3){
+                element.amount = 3;
+                return element
+            }else{
+                return element
+            }
+        })
+
+        setItems(backToOriginalAmounts);
+        setCounter(0);
+        setProductToAdd([])
+
+        
+    }
+
+    function disablingAllButtons(){
+        const buttons = document.querySelectorAll('.but');
+
+        for(let button of buttons){
+            if(button.hasAttribute('disabled')){
+                button.removeAttribute('disabled')
+            }else{
+                button.setAttribute('disabled', '')
+            }
+        }
+    }
     //Product Detail showing products
     const openProductDetail = ()=>{
         setProductDetailOpen(true);
@@ -199,7 +231,13 @@ function ShoppingCartProvider({children}){
             setItems, 
             items,
             isActive,
-            setActive
+            setActive,
+            deletingAllProducts,
+            isTryingToDelete, 
+            setTryingToDelete,
+            allDeleted,
+            setAllDeleted,
+            disablingAllButtons
         }}>
             {children}
         </ShoppingCartContext.Provider>
