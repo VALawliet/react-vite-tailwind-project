@@ -33,7 +33,7 @@ function Home(){
                 <Cart/>
             </section>
 
-            <CheckOutView/>
+            {context.isCheckOutActive ? <CheckOutView/> : <div></div>}
 
             
         </Layout>

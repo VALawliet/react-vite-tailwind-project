@@ -16,7 +16,8 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
     return(
         <div className='bg-teal-50 cursor-pointer w-60 h-60 rounded-lg mb-8'
             onClick={()=>{
-                showProduct()
+                showProduct();
+                context.setCheckOutActive(false)
             }}>
             <figure className='relative mb-2 w-full h-3/4'>
                 <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1'>{category}</span>
@@ -24,6 +25,7 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
                 <button className={amount? 'absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full transition-all duration-300 hover:bg-lime-600 hover:text-white hover:font-semibold but' : 'absolute m-2 p-1 top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full transition-all duration-300 hover:bg-red-600 hover:text-white hover:font-semibold but'}
                     onClick={(event)=>{
                         event.stopPropagation();
+                        context.setCheckOutActive(false)
                         
                         
                         const data = {

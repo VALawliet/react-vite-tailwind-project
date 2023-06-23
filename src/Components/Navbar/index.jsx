@@ -60,6 +60,11 @@ function Navbar(){
         },
 
         {
+            name:'Check Out',
+            className: ''
+        },
+
+        {
             to: '/MyOrders',
             name: 'My Orders',
             className: ''
@@ -118,6 +123,16 @@ function Navbar(){
                     if(element.name == 'uwu@gmail.com'){
                         return(
                             <li key = {element.name}className={element.className}>{element.name}</li>
+                        )
+                    }else if(element.name == 'Check Out'){
+                        return(
+                            <li key={element.name} className= 'cursor-pointer flex flex-row relative w-[85px]'onClick={()=>{
+                                if(contexto_uwu.isCheckOutActive == true){
+                                    contexto_uwu.setCheckOutActive(false)
+                                }else{
+                                    contexto_uwu.setCheckOutActive(true);
+                                }
+                            }}>{element.name} {contexto_uwu.checkOutProducts.length > 0 ? <span className='absolute w-3 text-xs text-red-500 font-semibold right-0 text-center top-2'>!</span> : ''}</li>
                         )
                     }else if(element.name == 'Carrito gei'){
                         return(

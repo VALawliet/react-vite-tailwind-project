@@ -61,6 +61,8 @@ function Cart(){
                     <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
                         
                         contexto.addingProductsToCheckOut();
+                        contexto.setCheckOutActive(true);
+                        contexto.closeShoppingCart()
                     }}><CheckIcon className='w-8 absolute left-1 top-1'/></button>
                     <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 mt-1 transition-all duration-300 hover:bg-slate-500 hover:text-white' onClick={()=>{
                         contexto.closeShoppingCart()
