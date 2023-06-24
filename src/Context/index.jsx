@@ -47,26 +47,70 @@ function ShoppingCartProvider({children}){
     const [isActive, setActive] = useState(false);
     const [isCheckOutActive, setCheckOutActive] = useState(false)
     const [isTryingToDelete, setTryingToDelete] = useState(false);
-    const [allDeleted, setAllDeleted] = useState(false)
+    const [allDeleted, setAllDeleted] = useState(false);
+    const [finalList, setFinalList] = useState([]);
     
 
     //Adding products to the shopping cart for checkout 
     function addingProduct(data){
         const productsToAdd = [...productToAdd];
+        const copyCheckOut = [...checkOutProducts];
+        let newData = data
         
 
         if(productsToAdd.length == 0){
-            console.log('pushing')
-            productsToAdd.push(data);
-            console.log(productsToAdd)
+
+            if(copyCheckOut.length > 0){
+                for(let element of copyCheckOut){
+                    if(element.mainProduct.productName == newData.mainProduct.productName){
+                        if(newData.amount == 3){
+                            if(element.amount == 2){
+                                newData.amount = element.amount - 1
+                            }else{
+                                newData.amount = newData.amount - 1
+                            }
+                            
+                        }
+                        else if(newData.amount == 2){
+                            console.log('entrando acá 1')
+                            newData.amount = newData.amount - 1
+                        }else if(newData.amount == 1){
+                            console.log('entrando acá')
+                            newData.amount = 1
+                        }
+                        
+                    }
+                }
+                console.log('pushing after loop')
+                productsToAdd.push(newData);
+                setProductToAdd(productsToAdd);
+            }else{
+                console.log('pushing')
+                productsToAdd.push(newData);
+                console.log(productsToAdd)
             
-            setProductToAdd(productsToAdd)
+                setProductToAdd(productsToAdd)
+            }
+            
+            
         }else{
+            const newData = data;
             const modifier = productsToAdd.map((element)=>{
                 
                 if(data.mainProduct.productName == element?.mainProduct?.productName){
+                    for(let checkOutElement of copyCheckOut){
+                        if(element.mainProduct.productName == checkOutElement?.mainProduct?.productName){
+                            if(newData.amount == 3){
+                                newData.amount = newData.amount - 1;
+                            }else if(newData.amount == 2){
+                                newData.amount = newData.amount - 1
+                            }else{
+                                newData.amount = 1
+                            }
+                        }
+                    }
                     console.log('enter')
-                    element.amount = data.amount;
+                    element.amount = newData.amount;
                     return element
                 }else{
                     return element
@@ -249,7 +293,23 @@ function ShoppingCartProvider({children}){
                             }
                         }
                     }else{
-                        continue
+                        
+                        for(let item of copyItems){
+                            if(item?.title == productAdding?.mainProduct?.productName){
+                                if(item.amount != 0){
+                                    console.log('cantidades')
+                                    console.log(item.amount);
+                                    console.log(productAdding.amount)
+                                    item.amount = (item.amount + 1) - productAdding.amount
+                                }else{
+                                    console.log('cantidades si es cero');
+                                    console.log(item.amount);
+                                    item.amount = 3 - productAdding.amount;
+                                    console.log(item.amount)
+                                }
+                                
+                            }
+                        }
                     }
                 }
             }
@@ -331,6 +391,49 @@ function ShoppingCartProvider({children}){
         setCheckOutSum(0);
         console.log('Deleted')
     }
+
+    function addingToFinalList(data){
+        const copyFinal = [...finalList];
+        copyFinal.push(data);
+        console.log('adding')
+        console.log(copyFinal)
+        setFinalList(copyFinal)
+        setCheckOutProducts([]);
+        setCheckOutActive(false)
+        
+    }
+
+    function cancelingOrder(index){
+        const copyFinal = [...finalList];
+        const copyItems = [...items];
+        const priceListCopy = [...totalPriceList]
+        
+        console.log(index)
+        console.log(copyFinal[index]);
+
+        for(let product of copyFinal[index]){
+
+            for(let item of copyItems){
+
+                if(product?.mainProduct?.productName == item?.title){
+                    if(item.amount < 3){
+                        item.amount = item.amount + product.amount
+                    }
+                }
+            }
+        }
+
+        copyFinal.splice(index, 1);
+        priceListCopy.splice(index, 1)
+        
+
+        setFinalList(copyFinal);
+        setItems(copyItems);
+        setTotalPriceList(priceListCopy)
+
+        
+    }
+
     //Product Detail showing products
     const openProductDetail = ()=>{
         setProductDetailOpen(true);
@@ -385,7 +488,11 @@ function ShoppingCartProvider({children}){
             isCheckOutActive,
             setCheckOutActive,
             deletingFromCheckOut,
-            deletingOneFromCheckOut
+            deletingOneFromCheckOut,
+            addingToFinalList,
+            finalList,
+            setFinalList,
+            cancelingOrder
         }}>
             {children}
         </ShoppingCartContext.Provider>

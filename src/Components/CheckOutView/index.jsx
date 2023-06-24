@@ -67,7 +67,8 @@ function CheckOutView(){
                     <h5 className='w-full text-center'>Total price: {context.checkOutSum}$</h5>
                     <div className='w-full flex flex-wrap flex-row justify-around'>
                         <button className='bg-lime-300 w-1/3 flex flex-row flex-wrap justify-center rounded-lg transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
-
+                            const data = [...context.checkOutProducts, context.checkOutSum]
+                            context.addingToFinalList(data)
                         }}><CheckIcon className='w-8'/></button>
                         <button className='bg-red-300 w-1/3 text-center flex flex-row flex-wrap justify-center rounded-lg transition-all duration-300 hover:bg-red-600 hover:text-white' onClick={()=>{
                             context.deletingFromCheckOut();
