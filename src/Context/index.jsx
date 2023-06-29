@@ -541,16 +541,17 @@ function ShoppingCartProvider({children}){
 
     function deletingAllProducts(){
         const returningBackToNormal = [...items];
-        const backToOriginalAmounts = returningBackToNormal.map((element)=>{
-            if(element.amount <= 3){
-                element.amount = 3;
-                return element
-            }else{
-                return element
+        const productsToAdd = [...productToAdd]
+        
+        for(let product of productsToAdd){
+            for(let item of returningBackToNormal){
+                if(product.mainProduct.productName == item.title){
+                    item.amount = item.amount + product.mainProduct.productAmount
+                }
             }
-        })
+        }
 
-        setItems(backToOriginalAmounts);
+        setItems(returningBackToNormal);
         setCounter(0);
         setProductToAdd([])
 
