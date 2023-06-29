@@ -10,13 +10,13 @@ function Navbar(){
 
     const menu1 = [
         {
-            to: "/",
+            to: "/Home",
             name: 'Shopi',
             className: 'font-semibold text-lg'
         },
 
         {
-            to: '/all',
+            to: '/Home',
             name: 'All',
             className: ''
         
@@ -36,18 +36,8 @@ function Navbar(){
         },
 
         {
-            to: '/furnitures',
-            name: 'Furnitures',
-            className: ''
-        },
-        {
-            to: '/toys',
-            name: 'Toys',
-            className: ''
-        },
-        {
-            to: '/others',
-            name: 'Others',
+            to: '/jewelry',
+            name: 'Jewelry',
             className: ''
         }
     ]

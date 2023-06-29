@@ -5,6 +5,7 @@ import { ProductDetail } from "../../Components/Productdetail";
 import { CheckOutView } from "../../Components/CheckOutView";
 import { useContext } from "react";
 import React from "react"
+import { NavLink } from "react-router-dom";
 
 
 function MyOrders(){
@@ -13,7 +14,7 @@ function MyOrders(){
         <Layout>
             <section className='flex w-9/12 h-auto flex-wrap justify-around'>
 
-                {context.finalList.map((element, index)=>{
+                {context.finalList.length > 0 ? context.finalList.map((element, index)=>{
                     
                     if(element.length == 2){
                         console.log('hey')
@@ -181,7 +182,12 @@ function MyOrders(){
                         )
                     }
                     
-                })}
+                }) : <div className='bg-red-800 text-white font-semibold w-1/2 h-64 rounded-lg flex flex-wrap flex-col items-center'>
+                        <span className='w-[90%] text-center mt-5'>It appears that you don't have any orders yet. We suggest you keep on looking through our products until you find the one you may be interested in</span>
+                        <button className='mt-10 bg-blue-500 w-1/2 h-12 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-700'>
+                            <NavLink to='/Home'>Return to main page</NavLink>
+                        </button>
+                    </div>}
 
                 <ProductDetail/>
                 <Cart/>
