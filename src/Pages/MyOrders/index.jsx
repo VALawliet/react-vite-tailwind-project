@@ -89,7 +89,7 @@ function MyOrders(){
                                                         <img key = {(index + 83832) * 32}src={product?.mainProduct?.productImg} className='w-full h-full object-cover rounded-lg'/>
                                                     </figure>
                                                     <p key = {(index + 323) * 32424}className='text-center'>{product?.mainProduct?.productName.length > 29 ? `${product?.mainProduct?.productName.substring(0, 28)}...` : product?.mainProduct?.productName}</p>
-                                                    <p key = {(index + 788) * 8382}className='text-center'>You've ordered <span key = {(index + 88221) * 673276376}className='font-semibold'>{product?.amount}</span> of this product</p>
+                                                    <p key = {(index + 788) * 8382}className='text-center'>You've ordered <span key = {(index + 88221) * 673276376}className='font-semibold'>{product?.mainProduct.productAmount}</span> of this product</p>
                                                     <p key = {(index + 8989) * 783283}className='text-center'>for <span key = {(index + 321) * 3244324} className='font-semibold'>{product?.mainProduct?.productPrice}</span>$ each</p>
                                                 </div>
                                                 
@@ -143,7 +143,7 @@ function MyOrders(){
                                                         <img key = {(index + 83832) * 32}src={product?.mainProduct?.productImg} className='w-full h-full object-cover rounded-lg'/>
                                                     </figure>
                                                     <p key = {(index + 323) * 32424}className='text-center'>{product?.mainProduct?.productName.length > 29 ? `${product?.mainProduct?.productName.substring(0, 28)}...` : product?.mainProduct?.productName}</p>
-                                                    <p key = {(index + 788) * 8382}className='text-center'>You've ordered <span key = {(index + 88221) * 673276376}className='font-semibold'>{product?.amount}</span> of this product</p>
+                                                    <p key = {(index + 788) * 8382}className='text-center'>You've ordered <span key = {(index + 88221) * 673276376}className='font-semibold'>{product?.mainProduct?.productAmount}</span> of this product</p>
                                                     <p key = {(index + 8989) * 783283}className='text-center'>for <span key = {(index + 321) * 3244324} className='font-semibold'>{product?.mainProduct?.productPrice}</span>$ each</p>
                                                 </div>
                                                 

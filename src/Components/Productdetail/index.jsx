@@ -5,7 +5,7 @@ import { useContext } from 'react'
 
 function ProductDetail(){
     const context = useContext(ShoppingCartContext);
-    const deepCopy = [...context.items];
+    
     
 
     
@@ -50,56 +50,13 @@ function ProductDetail(){
                                 productImg: context.productToShow[0]?.image,
                                 productPrice: context.productToShow[0]?.price,
                                 productDescription: context.productToShow[0]?.description,
-                                productAmount: context.productToShow[0]?.amount - 1
+                                productAmount: context.productToShow[0]?.amount
                             }
 
-                            const newDataList = deepCopy.map((product)=>{
-                                if(product?.title == data.productName || product?.productName == data.productName){
-                                    if(product.amount > 0){
-                                        product.amount = context.productToShow[0]?.amount - 1;
-                                        context.setCounter(context.counter + 1);
-
-                                        switch (product.amount){
-                                            case 0:
-                                                context.addingProduct({
-                                                    mainProduct: data,
-                                                    amount: 3
-                                                });
-
-                                                break
-                                            
-                                            case 1:
-                                                context.addingProduct({
-                                                    mainProduct: data,
-                                                    amount: 2
-                                                })
-                                                
-                                                break
-                                            case 2:
-                                                context.addingProduct({
-                                                    mainProduct: data,
-                                                    amount: 1
-                                                })
-
-                                                break
-
-                                            default:
-                                                break
-                                        }
-                                        
-                                    }else{
-                                        context.setActive(true)
-                                    }
-                                    
-                                    
-                                    
-                                }
-
-                                return product
-                            })
-
+                            if(data.productAmount > 0){
+                                context.addingProduct(data)
+                            }
                             
-                            context.setItems(newDataList)
                         }
                     }>{context.productToShow[0]?.amount ? 'Add Product' : 'Out Of Stock'}</button>
                 </div>

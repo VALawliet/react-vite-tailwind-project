@@ -34,56 +34,17 @@ function Cards({category, img, product, price, description, amount, deepCopy}){
                             productImg: img,
                             productPrice: price,
                             productDescription: description,
-                            productAmount: amount - 1
+                            productAmount: amount
                         }
 
-                        const newDataList = deepCopy.map((product)=>{
-                            if(product?.title == data.productName || product?.productName == data.productName){
-                                if(product.amount > 0){
-                                    product.amount = amount - 1;
-                                    context.setCounter(context.counter + 1);
-
-                                    switch (product.amount){
-                                        case 0:
-                                            context.addingProduct({
-                                                mainProduct: data,
-                                                amount: 3
-                                            });
-
-                                            break
-                                        
-                                        case 1:
-                                            context.addingProduct({
-                                                mainProduct: data,
-                                                amount: 2
-                                            })
-                                            
-                                            break
-                                        case 2:
-                                            context.addingProduct({
-                                                mainProduct: data,
-                                                amount: 1
-                                            })
-
-                                            break
-
-                                        default:
-                                            break
-                                    }
-                                    
-                                }else{
-                                    context.setActive(true)
-                                }
-                                
-                                
-                                
-                            }
-
-                            return product
-                        })
-
                         
-                        context.setItems(newDataList)
+
+                        if(data.productAmount > 0){
+                            context.addingProduct(data)
+                        }else{
+                            context.setActive(true)
+                        }
+                        
 
                         
                         

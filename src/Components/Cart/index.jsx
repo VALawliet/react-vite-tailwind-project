@@ -21,15 +21,15 @@ function Cart(){
             <aside className= {`${contexto.isShoppingCartOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-70px)] flex-row flex-wrap fixed bg-white top-[70px] right-0 border border-black rounded-lg z-10 overflow-y-auto justify-center`}>
                 {contexto.productToAdd.length > 0 ? contexto.productToAdd.map((element)=>{
                     return (
-                        <div key={element.mainProduct.productName} className='w-[90%] h-[355px] bg-slate-200 mt-4 mb-2 border rounded-lg flex flex-col flex-wrap items-center'>
+                        <div key={element?.mainProduct?.productName} className='w-[90%] h-[355px] bg-slate-200 mt-4 mb-2 border rounded-lg flex flex-col flex-wrap items-center'>
                             <figure className='flex flex-row flex-wrap w-[60%] h-56'>
                                 <img className= 'w-full h-full object-contain rounded-lg' src={element.mainProduct.productImg} onClick={()=>{
-                                    showProduct(element.mainProduct.productName)
+                                    showProduct(element?.mainProduct?.productName)
                                     
                                 }}/>
                             </figure>
                             <p className='text-center mt-1 px-2'>{element.mainProduct.productName.length > 40 ? `${element.mainProduct.productName.substr(0, 39)}...`: element.mainProduct.productName}</p>
-                            <p className='text-center mt-1 px-2'>You have selected <span className='font-semibold'>{element.amount}</span> unities of this product</p>
+                            <p className='text-center mt-1 px-2'>You have selected <span className='font-semibold'>{element.mainProduct.productAmount}</span> unities of this product</p>
                             <button className='w-[20%] mt-3 h-8 relative bg-white text-black rounded-lg transition-all duration-300 hover:bg-red-600 hover:text-white' onClick={()=>{
                                 const data = {
                                     productName: element.mainProduct.productName,

@@ -32,7 +32,7 @@ function CheckOutView(){
                                 <img src={element?.mainProduct?.productImg} className='object-cover w-full rounded-lg h-full'/>
                             </figure>
                             <p className='text-sm font-semibold text-center'>{element?.mainProduct?.productName.length > 20 ? `${element?.mainProduct?.productName.substring(0, 19)}...` : element?.mainProduct?.productName}</p>
-                            <p className='text-base font-light text-center'>You've selected {element?.amount} for</p>
+                            <p className='text-base font-light text-center'>You've selected {element?.mainProduct.productAmount} for</p>
                             <p className='text-base font-semibold text-center'>{element?.mainProduct?.productPrice}$</p>
                             <button className='w-[90%] bg-red-300 flex flex-row justify-center rounded-lg mb-2 transition-all duration-300 hover:bg-red-500 hover:text-white' onClick={(event)=>{
                                 event.stopPropagation()

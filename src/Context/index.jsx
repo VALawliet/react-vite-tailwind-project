@@ -35,7 +35,7 @@ function ShoppingCartProvider({children}){
 
     }, [])
 
-    console.log(items)
+   
     const [isProductDetailOpen, setProductDetailOpen] = useState(false);
     const [isShoppingCartOpen, setShoppingCartOpen] = useState(false)
     const [counter, setCounter] = useState(0)
@@ -52,96 +52,422 @@ function ShoppingCartProvider({children}){
     
 
     //Adding products to the shopping cart for checkout 
+
+    function productsLenghtEquals0OrNot(productsToAdd, data, copyItems){
+        if(productsToAdd.length == 0){
+            console.log('working 1');
+            console.log(data);
+
+            if(data.productAmount == 3){
+                const lessAmount = data.productAmount - 2
+                const newData = {
+                    mainProduct: {
+                        productName: data.productName,
+                        productCategory: data.productCategory,
+                        productImg: data.productImg,
+                        productPrice: data.productPrice,
+                        productDescription: data.productDescription,
+                        productAmount: lessAmount
+                    }
+                }
+                for(let product of copyItems){
+                    if(product.title == data.productName){
+                        product.amount = data.productAmount - 1
+                    }
+                }
+                setProductToAdd([newData]);
+                setItems(copyItems)
+                setCounter(counter + 1);
+
+            }else if(data.productAmount == 2){
+                const lessAmount = data.productAmount - 1
+                const newData = {
+                    mainProduct: {
+                        productName: data.productName,
+                        productCategory: data.productCategory,
+                        productImg: data.productImg,
+                        productPrice: data.productPrice,
+                        productDescription: data.productDescription,
+                        productAmount: lessAmount
+                    }
+                }
+                for(let product of copyItems){
+                    if(product.title == data.productName){
+                        product.amount = data.productAmount - 1
+                    }
+                }
+                setProductToAdd([newData]);
+                setItems(copyItems)
+                setCounter(counter + 1);
+
+            }else{
+                const lessAmount = data.productAmount
+                const newData = {
+                    mainProduct: {
+                        productName: data.productName,
+                        productCategory: data.productCategory,
+                        productImg: data.productImg,
+                        productPrice: data.productPrice,
+                        productDescription: data.productDescription,
+                        productAmount: lessAmount
+                    }
+                }
+                for(let product of copyItems){
+                    if(product.title == data.productName){
+                        product.amount = data.productAmount - 1
+                    }
+                }
+                setProductToAdd([newData]);
+                setItems(copyItems)
+                setCounter(counter + 1);
+            }
+            
+
+        }else{
+            console.log('else')
+            const firstFilter = productsToAdd.filter((element)=>{
+                return element.mainProduct.productName == data.productName;
+            })
+            console.log('seeing products to add')
+            console.log(productsToAdd)
+            
+            console.log(firstFilter)
+            if(firstFilter.length > 0){
+                console.log('found')
+                for(let product of productsToAdd){
+                    if(product.mainProduct.productName == data.productName){
+                        product.mainProduct.productAmount = product.mainProduct.productAmount + 1;
+
+                        for(let item of copyItems){
+                            if(item.title == data.productName){
+                                console.log('item found')
+                                item.amount = item.amount - 1;
+                            }
+                        }
+                    }
+                }
+
+                setProductToAdd(productsToAdd);
+                setItems(copyItems);
+                setCounter(counter + 1)
+
+
+            }else{
+                console.log('not there');
+                if(data.productAmount == 3){
+                    const lessAmount = data.productAmount - 2
+                    const newData = {
+                        mainProduct: {
+                            productName: data.productName,
+                            productCategory: data.productCategory,
+                            productImg: data.productImg,
+                            productPrice: data.productPrice,
+                            productDescription: data.productDescription,
+                            productAmount: lessAmount
+                        }
+                    }
+
+                    productsToAdd.push(newData);
+
+                    for(let product of copyItems){
+                        if(product.title == data.productName){
+                            product.amount = data.productAmount - 1
+                        }
+                    }
+
+                    setProductToAdd(productsToAdd);
+                    setItems(copyItems);
+                    setCounter(counter + 1)
+
+                }else if(data.productAmount == 2){
+                    const lessAmount = data.productAmount - 1
+                    const newData = {
+                        mainProduct: {
+                            productName: data.productName,
+                            productCategory: data.productCategory,
+                            productImg: data.productImg,
+                            productPrice: data.productPrice,
+                            productDescription: data.productDescription,
+                            productAmount: lessAmount
+                        }
+                    }
+
+                    productsToAdd.push(newData);
+
+                    for(let product of copyItems){
+                        if(product.title == data.productName){
+                            product.amount = data.productAmount - 1
+                        }
+                    }
+
+                    setProductToAdd(productsToAdd);
+                    setItems(copyItems);
+                    setCounter(counter + 1)
+
+                }else{
+                    const lessAmount = data.productAmount
+                    const newData = {
+                        mainProduct: {
+                            productName: data.productName,
+                            productCategory: data.productCategory,
+                            productImg: data.productImg,
+                            productPrice: data.productPrice,
+                            productDescription: data.productDescription,
+                            productAmount: lessAmount
+                        }
+                    }
+
+                    productsToAdd.push(newData);
+
+                    for(let product of copyItems){
+                        if(product.title == data.productName){
+                            product.amount = data.productAmount - 1
+                        }
+                    }
+
+                    setProductToAdd(productsToAdd);
+                    setItems(copyItems);
+                    setCounter(counter + 1)
+                }
+                
+                
+
+
+                
+            }
+        }
+    }
+
+    function isSomethingInCheckOut(productsToAdd, data, copyCheckOut, copyItems){
+
+        const valueInCheckOut = copyCheckOut.filter((element)=>{
+            return element?.mainProduct?.productName == data.productName
+        })
+
+        if(valueInCheckOut.length > 0){
+            for(let productInCheckOut of copyCheckOut){
+                if(productInCheckOut.mainProduct.productName == data.productName){
+                    if(productInCheckOut.mainProduct.productAmount == 2){
+                        
+                        
+        
+                        const newData = {
+                            mainProduct:{
+                                productName: data.productName,
+                                productCategory: data.productCategory,
+                                productPrice: data.productPrice,
+                                productImg: data.productImg,
+                                productDescription: data.productDescription,
+                                productAmount: 2 - data.productAmount
+                            }
+                        }
+        
+                        for(let product of copyItems){
+                            if(product.title == data.productName){
+                                product.amount = data.productAmount - 1
+                            }
+                        }
+        
+                        productsToAdd.push(newData);
+        
+                        setProductToAdd(productsToAdd);
+                        setItems(copyItems);
+                        setCounter(counter + 1);
+                        
+                    
+                    }else{
+                        console.log('error en else')
+                        const newData = {
+                            mainProduct:{
+                                productName: data.productName,
+                                productCategory: data.productCategory,
+                                productPrice: data.productPrice,
+                                productImg: data.productImg,
+                                productDescription: data.productDescription,
+                                productAmount: data.productAmount - 1
+                            }
+                        }
+        
+                        for(let product of copyItems){
+                            if(product.title == data.productName){
+                                product.amount = data.productAmount - 1
+                            }
+                        }
+        
+                        const valueIsInList = productsToAdd.filter((element)=>{
+                            return element.mainProduct.productName == data.productName;
+                        });
+        
+                        if(valueIsInList.length == 0){
+                            console.log('not in for')
+        
+                            productsToAdd.push(newData)
+        
+                        }else{
+                            console.log('entering for')
+                            for(let product of productsToAdd){
+                                if(product.mainProduct.productName == data.productName){
+                                    console.log(product.mainProduct.productAmount);
+                                    console.log(data.productAmount);
+        
+                                    if(newData.mainProduct.productAmount == 0){
+                                        product.mainProduct.productAmount = newData.mainProduct.productAmount + 2
+                                    }else{
+                                        product.mainProduct.productAmount = newData.mainProduct.productAmount
+                                    }
+        
+                                    
+                                }
+                            }
+                        }
+        
+                        setProductToAdd(productsToAdd);
+                        setItems(copyItems);
+                        setCounter(counter + 1);
+                        
+                    }
+    
+                }
+                
+            }
+
+        }else{
+            if(productsToAdd.length == 0){
+                console.log('seeing data')
+                console.log(data)
+    
+                if(data.productAmount == 3){
+                    const lessAmount = data.productAmount - 2;
+                    const newData = {
+                        mainProduct: {
+                            productName: data.productName,
+                            productImg: data.productImg,
+                            productCategory: data.productCategory,
+                            productDescription: data.productDescription,
+                            productPrice: data.productPrice,
+                            productAmount: lessAmount
+                        }
+                    }
+                    
+                    for(let item of copyItems){
+                        if(item.title == data.productName){
+                            item.amount = data.productAmount - 1
+                        }
+                    }
+                    setProductToAdd([newData]);
+                    setItems(copyItems)
+                    setCounter(counter + 1)
+                }
+    
+            }else{
+                const filter1 = productsToAdd.filter((element)=>{
+                    return element.mainProduct.productName == data.productName
+                })
+    
+                if(filter1.length > 0){
+                    for(let product of productsToAdd){
+                        if(product.mainProduct.productName == data.productName){
+                            if(data.productAmount == 2){
+                                
+                                const newData = {
+                                    mainProduct: {
+                                        productName: data.productName,
+                                        productImg: data.productImg,
+                                        productCategory: data.productCategory,
+                                        productDescription: data.productDescription,
+                                        productPrice: data.productPrice,
+                                        productAmount: data.productAmount
+    
+                                    }
+                                }
+
+                                product.mainProduct = newData.mainProduct;
+                                setProductToAdd(productsToAdd)
+    
+                                
+    
+                            }else if(data.productAmount == 1){
+                                const newData = {
+                                    mainProduct: {
+                                        productName: data.productName,
+                                        productImg: data.productImg,
+                                        productCategory: data.productCategory,
+                                        productDescription: data.productDescription,
+                                        productPrice: data.productPrice,
+                                        productAmount: data.productAmount + 2
+    
+                                    }
+                                }
+
+                                product.mainProduct = newData.mainProduct
+    
+                                setProductToAdd(productsToAdd)
+                            }
+                        }
+                    }
+    
+                    for(let item of copyItems){
+                        if(item.title == data.productName){
+                            item.amount = item.amount - 1
+                        }
+                    }
+    
+                    setItems(copyItems);
+                    setCounter(counter + 1)
+    
+                }else{
+                    const newData = {
+                        mainProduct: {
+                            productName: data.productName,
+                                productImg: data.productImg,
+                                productCategory: data.productCategory,
+                                productDescription: data.productDescription,
+                                productPrice: data.productPrice,
+                                productAmount: data.productAmount - 2
+                        }
+                    }
+    
+                    productsToAdd.push(newData);
+    
+                    for(let item of copyItems){
+                        if(item.title == data.productName){
+                            item.amount = item.amount - 1
+                        }
+                    }
+    
+    
+    
+                    setProductToAdd(productsToAdd);
+                    setItems(copyItems);
+                    setCounter(counter + 1)
+                    
+                
+                }
+            }
+        }
+
+       
+
+        
+
+    }
+
     function addingProduct(data){
         const productsToAdd = [...productToAdd];
         const copyCheckOut = [...checkOutProducts];
-        let newData = data
+        const copyFinalProducts = [...finalList];
+        const copyItems = [...items]
+
         
+            if(copyCheckOut.length != 0){
+                console.log('something is in checkOut')
+                isSomethingInCheckOut(productsToAdd, data, copyCheckOut, copyItems)
 
-        if(productsToAdd.length == 0){
-
-            if(copyCheckOut.length > 0){
-                for(let element of copyCheckOut){
-                    if(element.mainProduct.productName == newData.mainProduct.productName){
-                        if(newData.amount == 3){
-                            if(element.amount == 2){
-                                newData.amount = element.amount - 1
-                            }else{
-                                newData.amount = newData.amount - 1
-                            }
-                            
-                        }
-                        else if(newData.amount == 2){
-                            console.log('entrando acá 1')
-                            newData.amount = newData.amount - 1
-                        }else if(newData.amount == 1){
-                            console.log('entrando acá')
-                            newData.amount = 1
-                        }
-                        
-                    }
-                }
-                console.log('pushing after loop')
-                productsToAdd.push(newData);
-                setProductToAdd(productsToAdd);
             }else{
-                console.log('pushing')
-                productsToAdd.push(newData);
-                console.log(productsToAdd)
-            
-                setProductToAdd(productsToAdd)
-            }
-            
-            
-        }else{
-            const newData = data;
-            const modifier = productsToAdd.map((element)=>{
                 
-                if(data.mainProduct.productName == element?.mainProduct?.productName){
-                    for(let checkOutElement of copyCheckOut){
-                        if(element.mainProduct.productName == checkOutElement?.mainProduct?.productName){
-                            if(newData.amount == 3){
-                                newData.amount = newData.amount - 1;
-                            }else if(newData.amount == 2){
-                                newData.amount = newData.amount - 1
-                            }else{
-                                newData.amount = 1
-                            }
-                        }
-                    }
-                    console.log('enter')
-                    element.amount = newData.amount;
-                    return element
-                }else{
-                    return element
-                }
-                
-            })
-
-            const filtro = modifier.filter((element)=>{
-                if(element?.mainProduct?.productName == data.mainProduct.productName){
-                    return element
-                }
-            })
-
-            if(filtro.length == 0){
-                console.log('filtro')
-                productsToAdd.push(data);
-                console.log(productsToAdd)
-                setProductToAdd(productsToAdd)
-            }else{
-                console.log('trying to add the modifier')
-                console.log(modifier)
-                setProductToAdd(modifier);
+                productsLenghtEquals0OrNot(productsToAdd, data, copyItems);
             }
-
-            
-            
-            
-            
-            
-            
-        }
+        
         
         
         
@@ -156,11 +482,11 @@ function ShoppingCartProvider({children}){
         const deletingAmount = deleteThisProduct.map((element)=>{
             if(element?.mainProduct?.productName == data.productName){
 
-                if(element.amount >= 2){
-                    element.amount = element.amount - 1;
+                if(element.mainProduct.productAmount >= 2){
+                    element.mainProduct.productAmount = element.mainProduct.productAmount - 1;
                     return element
                 }else{
-                    element.amount = element.amount - 1
+                    element.mainProduct.Amount = element.mainProduct.productAmount - 1
                     return {...element, valueDetect: true}
                 }
             }else{
@@ -248,7 +574,7 @@ function ShoppingCartProvider({children}){
         if(checkOutProducts.length == 0){
             const newCheckOutProducts = [...productToAdd];
             const newPriceList = newCheckOutProducts.map((element)=>{
-                return (element.mainProduct?.productPrice * element?.amount)
+                return (element.mainProduct?.productPrice * element?.mainProduct.productAmount)
                })
             
             const sumOfAllPrices = newPriceList.reduce((accumulator, currentvalue) => accumulator + currentvalue, 0);
@@ -262,71 +588,28 @@ function ShoppingCartProvider({children}){
             setCounter(0)
             
         }else{
-            const actualCheckOutProducts = [...checkOutProducts];
+            const actualCheckOutList = [...checkOutProducts];
             const copyItems = [...items];
-            const newCheckOutProducts = [...productToAdd]
+            const copyProductsToAdd = [...productToAdd];
 
-            for(let product of actualCheckOutProducts){
+            for(let product of actualCheckOutList){
                 for(let item of copyItems){
-                    if(product?.mainProduct?.productName == item?.title){
-                        if(item.amount != 0){
-                            item.amount = item.amount + product.amount;
-                        }
-                        
-                    }else{
-                        continue
+                    if(item.title == product.mainProduct.productName){
+                        item.amount = item.amount + product.mainProduct.productAmount;
                     }
                 }
             }
 
-            for(let product of actualCheckOutProducts){
-                
-                for(let productAdding of newCheckOutProducts){
-                    
-                    if(product?.mainProduct?.productName != productAdding?.mainProduct?.productName){
-                        
-                        for(let item of copyItems){
-                            if(item?.title == product?.mainProduct?.productName){
-                                item.amount = 3;
-                            }else{
-                                continue
-                            }
-                        }
-                    }else{
-                        
-                        for(let item of copyItems){
-                            if(item?.title == productAdding?.mainProduct?.productName){
-                                if(item.amount != 0){
-                                    console.log('cantidades')
-                                    console.log(item.amount);
-                                    console.log(productAdding.amount)
-                                    item.amount = (item.amount + 1) - productAdding.amount
-                                }else{
-                                    console.log('cantidades si es cero');
-                                    console.log(item.amount);
-                                    item.amount = 3 - productAdding.amount;
-                                    console.log(item.amount)
-                                }
-                                
-                            }
-                        }
-                    }
-                }
-            }
-
-            const priceList = newCheckOutProducts.map((element)=>{
-                return(element.mainProduct?.productPrice * element?.amount)
+            const newPriceList = copyProductsToAdd.map((element)=>{
+                return (element.mainProduct?.productPrice * element?.mainProduct.productAmount)
             })
 
-            const sumPrices = priceList.reduce((accumulator, currentvalue) => accumulator + currentvalue, 0);
-            setCheckOutSum(sumPrices)
-            setCheckOutProducts(newCheckOutProducts);
-            setProductToAdd([]);
-            console.log('changing list')
-            console.log(copyItems)
+            const priceSum = newPriceList.reduce((accumulator, currentvalue)=> accumulator + currentvalue, 0);
+            setCheckOutSum(parseFloat(priceSum.toFixed(2)))
             setItems(copyItems);
-            setCounter(0);
-            
+            setCounter(0)
+            setCheckOutProducts(copyProductsToAdd);
+            setProductToAdd([])
         }
            
         
@@ -338,16 +621,16 @@ function ShoppingCartProvider({children}){
 
         for(let product of copyAllCheckOut){
 
-            if(product?.amount >= 1){
+            if(product?.mainProduct.productAmount >= 1){
                 if(product?.mainProduct?.productName == data.productName){
-                    product.amount = product.amount - 1
+                    product.mainProduct.productAmount = product.mainProduct.productAmount - 1
                 }
             }
             
         }
 
         const modifier = copyAllCheckOut.filter((element)=>{
-            return element.amount > 0
+            return element.mainProduct.productAmount > 0
         })
 
         for(let item of copyAllItems){
@@ -359,7 +642,7 @@ function ShoppingCartProvider({children}){
         }
 
         const priceList = modifier.map((element)=>{
-            return element?.mainProduct?.productPrice * element?.amount
+            return element?.mainProduct?.productPrice * element?.mainProduct.productAmount
         });
 
         const sumOfProducts = priceList.reduce((accumulator, currentvalue)=> accumulator + currentvalue, 0);
@@ -380,14 +663,14 @@ function ShoppingCartProvider({children}){
         for(let product of copyCheckOut){
             for(let item of copyOfItems){
                 if(product?.mainProduct?.productName == item?.title){
-                    item.amount = 3;
+                    item.amount = item.amount + product.mainProduct.productAmount;
                 }
             }
         }
 
         setItems(copyOfItems);
         setCheckOutProducts([]);
-        setCounter(0);
+        
         setCheckOutSum(0);
         console.log('Deleted')
     }
@@ -417,7 +700,7 @@ function ShoppingCartProvider({children}){
 
                 if(product?.mainProduct?.productName == item?.title){
                     if(item.amount < 3){
-                        item.amount = item.amount + product.amount
+                        item.amount = item.amount + product.mainProduct.productAmount
                     }
                 }
             }
