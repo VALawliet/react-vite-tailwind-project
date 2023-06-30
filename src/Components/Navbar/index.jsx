@@ -45,7 +45,7 @@ function Navbar(){
     const menu2 = [
 
         {
-            name: 'uwu@gmail.com',
+            name: contexto_uwu.user? contexto_uwu.user[0].userName : 'Guest',
             className: 'text-black/60'
         },
 
@@ -110,7 +110,7 @@ function Navbar(){
 
             <ul className="flex items-center gap-3">
                 {menu2.map((element)=>{
-                    if(element.name == 'uwu@gmail.com'){
+                    if(element.name == contexto_uwu?.user[0]?.userName || element.name == 'Guest'){
                         return(
                             <li key = {element.name}className={element.className}>{element.name}</li>
                         )

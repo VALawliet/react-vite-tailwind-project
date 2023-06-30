@@ -9,28 +9,55 @@ function ShoppingCartProvider({children}){
     const url = 'https://fakestoreapi.com/products'
 
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState([])
     
     
     useEffect(()=>{
-        const responseFetch = async ()=>{
+
+        setTimeout(()=>{
+            const responseFetch = async ()=>{
+                try{
+                    const response = await fetch(url);
+                    const responseJSON = await response.json();
+                    const deepCopy = [...responseJSON];
+                    const newItems = deepCopy.map((element)=>{
+                        element.amount = 3;
+                        return element
+                    })
+                    
+    
+                    
+                    setItems(newItems);
+                    
+                }catch (err) {
+                    console.log(err)
+                }
+    
+            }
+    
+            responseFetch();
+
             try{
-                const response = await fetch(url);
-                const responseJSON = await response.json();
-                const deepCopy = [...responseJSON];
-                const newItems = deepCopy.map((element)=>{
-                    element.amount = 3;
-                    return element
-                })
-                console.log(newItems)
-                setItems(newItems);
-                
-            }catch (err) {
+                const localStorageResponse = localStorage.getItem('USER');
+                let parsedUser;
+
+                if(!localStorageResponse){
+                    localStorage.setItem('USER', '[]');
+                    parsedUser = [];
+
+                }else{
+                    let jsonResponse = JSON.parse(localStorageResponse);
+                    parsedUser = jsonResponse;
+                    setUser(parsedUser)
+                }
+
+                setLoading(false)
+            }catch(err){
                 console.log(err)
             }
-
-        }
-
-        responseFetch();
+            
+        }, 4000)
         
 
     }, [])
@@ -776,7 +803,9 @@ function ShoppingCartProvider({children}){
             addingToFinalList,
             finalList,
             setFinalList,
-            cancelingOrder
+            cancelingOrder,
+            loading,
+            user
         }}>
             {children}
         </ShoppingCartContext.Provider>
