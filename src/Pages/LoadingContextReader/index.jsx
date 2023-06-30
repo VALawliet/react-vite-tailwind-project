@@ -7,7 +7,7 @@ import { MyAccount } from '../MyAccount'
 import { MyOrder } from '../MyOrder'
 import { MyOrders} from '../MyOrders'
 import { NotFound } from '../NotFound'
-import { SignIn } from '../SignIn'
+import { SignUp } from '../SignUp'
 import { Navbar } from '../../Components/Navbar'
 import { Jewelry } from '../Jewelry'
 import { Electronics } from '../Electronics'
@@ -22,7 +22,7 @@ const AppRoutes = ()=>{
       { path: '/MyOrders', element: <MyOrders/> },
       { path: '/MyOrder', element: <MyOrder/> },
       { path: '/*', element: <NotFound/> },
-      { path: '/SignIn', element: <SignIn/> }
+      { path: '/SignUp', element: <SignUp/> }
     ])
   
     return routes

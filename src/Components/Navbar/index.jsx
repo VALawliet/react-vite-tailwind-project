@@ -45,7 +45,7 @@ function Navbar(){
     const menu2 = [
 
         {
-            name: contexto_uwu.user? contexto_uwu.user[0].userName : 'Guest',
+            name: contexto_uwu.user.length > 0? contexto_uwu?.user[0]?.userName : 'Guest',
             className: 'text-black/60'
         },
 
@@ -67,8 +67,8 @@ function Navbar(){
         },
         
         {
-            to: '/SignIn',
-            name: 'Sign In',
+            to: '/SignUp',
+            name: 'Sign Up',
             className: ''
         },
 

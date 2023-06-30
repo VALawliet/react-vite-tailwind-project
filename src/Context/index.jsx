@@ -76,6 +76,9 @@ function ShoppingCartProvider({children}){
     const [isTryingToDelete, setTryingToDelete] = useState(false);
     const [allDeleted, setAllDeleted] = useState(false);
     const [finalList, setFinalList] = useState([]);
+    const [isPassVisible, setPassVisible] = useState(false);
+    const [userValue, setUserValue] = useState('');
+    const [userPass, setUserPass] = useState('');
     
 
     //Adding products to the shopping cart for checkout 
@@ -805,7 +808,13 @@ function ShoppingCartProvider({children}){
             setFinalList,
             cancelingOrder,
             loading,
-            user
+            user,
+            isPassVisible,
+            setPassVisible,
+            userValue,
+            setUserValue,
+            userPass,
+            setUserPass
         }}>
             {children}
         </ShoppingCartContext.Provider>

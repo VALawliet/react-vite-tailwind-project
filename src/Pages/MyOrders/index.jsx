@@ -185,7 +185,7 @@ function MyOrders(){
                 }) : <div className='bg-red-800 text-white font-semibold w-1/2 h-64 rounded-lg flex flex-wrap flex-col items-center'>
                         <span className='w-[90%] text-center mt-5'>It appears that you don't have any orders yet. We suggest you keep on looking through our products until you find the one you may be interested in</span>
                         <button className='mt-10 bg-blue-500 w-1/2 h-12 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-700'>
-                            <NavLink to='/Home'>Return to main page</NavLink>
+                            <NavLink className='flex w-full h-full justify-center items-center' to='/Home'>Return to main page</NavLink>
                         </button>
                     </div>}
 
