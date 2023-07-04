@@ -35,8 +35,8 @@ function LoadingContextReader(){
     return(
         <>
             {context.loading ? 
-            <div>
-                alo
+            <div className='border-solid border-[16px] border-gray-300 border-t-[16px] border-t-blue-400 rounded-full w-32 h-32 animate-spin absolute top-1/2 left-1/2 ml-[-64px] mt-[-64px]'>
+                
             </div> 
             
         
