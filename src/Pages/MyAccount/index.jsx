@@ -7,6 +7,7 @@ import { Cart } from "../../Components/Cart"
 import { CheckOutView } from "../../Components/CheckOutView"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 import { NavLink } from "react-router-dom"
+
 function MyAccount(){
     const context = useContext(ShoppingCartContext);
     const day = context?.user[0]?.day || null;
@@ -118,7 +119,9 @@ function MyAccount(){
                             
                             <p className='text-center w-[60%] mt-2 mb-3 bg-white h-12 text-black flex flex-row justify-center items-center rounded-lg'>Your account was created on <span className='font-semibold ml-1 mr-1'>{context?.user[0]?.month}</span> the <span className='font-semibold ml-1 mr-1'>{addingCorrectEnding(day)}</span> at <span className='font-semibold ml-1'>{context?.user[0]?.hour} and {context?.user[0]?.minutes} minutes</span> </p>
 
-                            <button className='bg-red-400 w-[30%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600'>Delete account</button>
+                            <button className='bg-red-400 w-[30%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600' onClick={()=>{
+                                context.setTryingToDeleteAcc(true)
+                            }}>Delete account</button>
                         </div>
                         
                     
@@ -157,6 +160,27 @@ function MyAccount(){
 
 
             {context.isCheckOutActive ? <CheckOutView/> : <div></div>}
+
+            {context.isTryingToDeleteAcc? 
+            
+                <div className="w-[300px] h-[190px] bg-red-300 rounded-lg fixed top-1/2 left-1/2 mt-[-150px] ml-[-150px]">
+                    <h4 className='text-white text-center text-xl mt-2'>Warning!</h4>
+                    <p className='px-2 text-center'>You're about to delete your account. Are you sure you want to proceed?</p>
+                    <div className='w-full flex justify-around flex-row flex-wrap mt-4'>
+                        <button className='w-24 h-12 rounded-lg bg-red-800 text-white transition-all duration-300 hover:bg-red-600' onClick={()=>{
+                            
+                            context.setUser([]);
+                            localStorage.removeItem('USER');
+                            context.setTryingToDeleteAcc(false)
+                        }}>Yes</button>
+                        <button className='w-24 h-12 rounded-lg bg-lime-800 text-white transition-all duration-300 hover:bg-lime-600' onClick={()=>{
+                            context.setTryingToDeleteAcc(false);
+                        }}>No</button>
+                    </div>
+                </div> 
+                
+                
+                : <div></div>}
 
         </Layout>
     )

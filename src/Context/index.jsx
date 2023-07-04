@@ -77,6 +77,7 @@ function ShoppingCartProvider({children}){
     const [allDeleted, setAllDeleted] = useState(false);
     const [finalList, setFinalList] = useState([]);
     const [isPassVisible, setPassVisible] = useState(false);
+    const [isTryingToDeleteAcc, setTryingToDeleteAcc] = useState(false)
     const [userValue, setUserValue] = useState('');
     const [userPass, setUserPass] = useState('');
     
@@ -809,12 +810,15 @@ function ShoppingCartProvider({children}){
             cancelingOrder,
             loading,
             user,
+            setUser,
             isPassVisible,
             setPassVisible,
             userValue,
             setUserValue,
             userPass,
-            setUserPass
+            setUserPass,
+            isTryingToDeleteAcc,
+            setTryingToDeleteAcc
         }}>
             {children}
         </ShoppingCartContext.Provider>

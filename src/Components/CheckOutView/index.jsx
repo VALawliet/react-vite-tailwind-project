@@ -49,7 +49,7 @@ function CheckOutView(){
                 
                 
                 : <div className='flex flex-col flex-wrap items-center'>
-                    <h3 className='w-full text-center text-xl px-2 py-2'>It appears that you haven't added any items to your checkout list. We recommend you keep on browsing through our product list until you find the items you want.</h3>
+                    <h3 className='w-full text-center text-xl px-2 py-2'>Huh... It seems that you haven't added any items to your checkout list. We recommend you keep on browsing through our product list until you find the items you want.</h3>
                     <button className='w-1/3 bg-lime-500 text-white rounded-lg h-12 mt-4 transition-all duration-300 hover:bg-lime-600 hover:text-white/90 hover:font-semibold' onClick={()=>{
                         context.setCheckOutActive(false)
                     }}>OK</button>
