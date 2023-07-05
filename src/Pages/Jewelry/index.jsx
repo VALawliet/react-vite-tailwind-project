@@ -20,7 +20,7 @@ function Jewelry(){
     
     return(
         <Layout>
-            Clothes
+            
             <section className='flex w-9/12 h-auto flex-wrap justify-around'>
                 {deepCopy1?.map((product)=>{
                         if(product.category == "jewelery"){

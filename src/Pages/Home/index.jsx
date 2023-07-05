@@ -21,7 +21,7 @@ function Home(){
     
     return(
         <Layout>
-            Home
+            
             <section className='flex w-9/12 h-auto flex-wrap justify-around'>
                 {deepCopy1?.map((product)=>{
                         

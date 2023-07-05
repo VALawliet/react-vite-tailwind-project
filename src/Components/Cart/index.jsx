@@ -18,7 +18,7 @@ function Cart(){
     }
     return(
         <>
-            <aside className= {`${contexto.isShoppingCartOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-70px)] flex-row flex-wrap fixed bg-white top-[70px] right-0 border border-black rounded-lg z-10 overflow-y-auto justify-center`}>
+            <aside className= {`${contexto.isShoppingCartOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-200px)] flex-row flex-wrap fixed bg-white top-[172px] right-1/2 mr-[-185px] border border-black rounded-lg z-10 overflow-y-auto justify-center`}>
                 {contexto.productToAdd.length > 0 ? contexto.productToAdd.map((element)=>{
                     return (
                         <div key={element?.mainProduct?.productName} className='w-[90%] h-[355px] bg-slate-200 mt-4 mb-2 border rounded-lg flex flex-col flex-wrap items-center'>
@@ -57,8 +57,8 @@ function Cart(){
 
             {contexto.productToAdd.length > 0 ? 
             <> 
-                <div className={contexto.isShoppingCartOpen ? 'flex fixed top-1/2 right-[360px] w-[100px] h-40 z-40 flex-col flex-wrap items-end' : 'hidden'}>
-                    <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
+                <div className={contexto.isShoppingCartOpen ? 'flex fixed bottom-0 right-1/2 mr-[-70px] w-[140px] h-[40px] z-40 flex-row justify-between flex-wrap' : 'hidden'}>
+                    <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 mt-1 transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
                         
                         contexto.addingProductsToCheckOut();
                         contexto.setCheckOutActive(true);

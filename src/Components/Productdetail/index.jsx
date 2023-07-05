@@ -12,10 +12,10 @@ function ProductDetail(){
     
     return(
         <>
-            <aside className= {`${context.isProductDetailOpen ? 'flex' : 'hidden' } w-[360px] h-[calc(100vh-68px)] flex-col fixed bg-white top-[68px] right-0 border border-black rounded-lg z-10 overflow-y-auto items-center`}>
-                <div className='flex justify-between items-center p-6 relative w-full'>
+            <aside className= {`${context.isProductDetailOpen ? 'flex' : 'hidden' } w-[360px] h-[calc(100vh-172px)] flex-col fixed bg-white top-[172px] right-1/2 mr-[-180px] border border-black rounded-lg z-10 overflow-y-auto items-center`}>
+                <div className='flex justify-between items-center p-6 fixed w-[360px]'>
                     <h2 className='font-medium text-xl fixed bg-white/60 rounded-lg p-2 m-2'>Details</h2>
-                    <XMarkIcon className='w-6 h-6 cursor-pointer fixed right-4 bg-white/60 rounded-lg m-2' onClick={()=>{
+                    <XMarkIcon className='w-6 h-6 cursor-pointer absolute right-2 bg-white/60 rounded-lg m-2' onClick={()=>{
                         context.closeProductDetail()
                     }}/>
                 </div>
