@@ -74,7 +74,7 @@ function MyAccount(){
     return(
         <Layout>
             <section className='flex w-9/12 h-auto flex-wrap justify-center'>
-                <div className='bg-slate-700 w-[90%] rounded-lg text-white flex flex-wrap justify-center'>
+                <div className='bg-slate-700 w-full rounded-lg text-white flex flex-wrap justify-center'>
                     <h1 className='w-full text-center text-xl mt-2'>
                         {context.user.length > 0? 
                         
@@ -94,11 +94,11 @@ function MyAccount(){
 
                     {context.user.length > 0?
                        <div className='flex w-full flex-col flex-wrap items-center'>
-                            <p className='w-[60%] h-12 bg-red-50 mt-2 mb-3 rounded-lg text-center text-black flex flex-row justify-center items-center'>Username: <span className='font-semibold ml-2'> {context?.user[0]?.userName}</span></p>
-                            <div className='w-[60%] flex flex-row flex-wrap justify-center relative rounded-lg h-12 items-center mt-2 mb-3'>
-                                <div className='w-[70%] bg-white flex flex-row flex-wrap h-12 justify-center items-center rounded-lg'>
-                                    <p className='text-black text-center rounded-tl-lg rounded-bl-lg pl-2 w-24'>Password: </p>
-                                    <input type='password' readOnly value={context.user[0]?.password} className='text-black rounded-br-lg rounded-tr-lg ml-1'/>
+                            <p className='w-[75%] h-12 bg-red-50 mt-2 mb-3 rounded-lg text-center text-black flex flex-row justify-center items-center'>Username: <span className='font-semibold ml-2'> {context?.user[0]?.userName}</span></p>
+                            <div className='w-[75%] flex flex-row flex-wrap justify-center relative rounded-lg h-12 items-center mt-2 mb-3'>
+                                <div className='w-[70%] bg-white flex flex-row flex-wrap h-12 justify-around items-center rounded-lg'>
+                                    <p className='text-black rounded-tl-lg rounded-bl-lg w-20'>Password: </p>
+                                    <input type='password' readOnly value={context.user[0]?.password} className='text-black w-[90%] text-center rounded-lg'/>
                                 </div>
                                 <div className='w-[30%]'>
                                     <button className={context.isPassVisible == false ? 'bg-white rounded-lg w-12 flex flex-row justify-center ml-4 text-black transition-all duration-300 hover:bg-lime-500 hover:text-white' : 'bg-white rounded-lg w-12 flex flex-row justify-center ml-4 text-black transition-all duration-300 hover:bg-red-500 hover:text-white'} onClick={()=>{
@@ -117,9 +117,9 @@ function MyAccount(){
                                 
                             </div>
                             
-                            <p className='text-center w-[60%] mt-2 mb-3 bg-white h-12 text-black flex flex-row justify-center items-center rounded-lg'>Your account was created on <span className='font-semibold ml-1 mr-1'>{context?.user[0]?.month}</span> the <span className='font-semibold ml-1 mr-1'>{addingCorrectEnding(day)}</span> at <span className='font-semibold ml-1'>{context?.user[0]?.hour} and {context?.user[0]?.minutes} minutes</span> </p>
+                            <p className='text-center w-[75%] h-24 mt-2 mb-3 px-2 bg-white text-black flex flex-col flex-wrap items-center justify-center rounded-lg'><span className='grow-0 shrink-0'>Your account was created on</span> <span className='font-semibold shrink-0 grow-0'>{context?.user[0]?.month} the {addingCorrectEnding(day)} at {context?.user[0]?.hour} and {context?.user[0]?.minutes} minutes</span> </p>
 
-                            <button className='bg-red-400 w-[30%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600' onClick={()=>{
+                            <button className='bg-red-400 w-[45%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600' onClick={()=>{
                                 context.setTryingToDeleteAcc(true)
                             }}>Delete account</button>
                         </div>
@@ -129,15 +129,15 @@ function MyAccount(){
                         :
                         <>
                             <div className='w-full flex flex-row justify-center mt-2 mb-3'>
-                                <p className='w-[60%] bg-white h-12 text-black text-center rounded-lg flex flex-row flex-wrap items-center'>
+                                <p className='w-[60%] bg-white text-black text-center rounded-lg flex flex-row flex-wrap items-center'>
 
-                                    <span className='px-4'>It appears that you don't have an account with us yet. You should consider creating one</span>
+                                    <span className='px-4 py-2'>It appears that you don't have an account with us yet. You should consider creating one</span>
 
                                 </p>
                             </div>
                             
                             <div className='w-full flex flex-row justify-center mt-2 mb-3'>
-                                <button className='w-[30%] bg-blue-400 text-white h-12 rounded-lg transition-all duration-300 hover:bg-blue-600'>
+                                <button className='w-[45%] bg-blue-400 text-white h-12 rounded-lg transition-all duration-300 hover:bg-blue-600'>
                                     <NavLink className='w-full h-full flex flex-row flex-wrap items-center justify-center' to='../SignUp'>Go to Sign Up</NavLink>
                                     
                                 </button>

@@ -20,7 +20,7 @@ function CheckOutView(){
     return(
         <>
             
-            <div className='fixed top-1/2 left-1/2 w-[500px] h-[260px] bg-slate-400/90 ml-[-250px] mt-[-130px] flex flex-row overflow-x-auto rounded-lg overflow-y-visible'>
+            <div className='fixed top-1/2 left-1/2 w-[350px] h-[260px] bg-slate-400/90 ml-[-170px] mt-[-130px] flex flex-row overflow-x-auto rounded-lg overflow-y-visible'>
                 {context.checkOutProducts.length > 0? 
 
                     context.checkOutProducts.map((element)=>{
@@ -63,7 +63,7 @@ function CheckOutView(){
 
             {context.checkOutProducts.length > 0? 
             <>
-                <div className="fixed top-1/2 left-1/2 w-[500px] h-[70px] z-60 bg-slate-400/90 ml-[-250px] mt-[135px] flex flex-col flex-wrap rounded-lg">
+                <div className="fixed top-1/2 left-1/2 w-[350px] h-[70px] z-60 bg-slate-400/90 ml-[-170px] mt-[135px] flex flex-col flex-wrap rounded-lg">
                     <h5 className='w-full text-center'>Total price: {context.checkOutSum}$</h5>
                     <div className='w-full flex flex-wrap flex-row justify-around'>
                         <button className='bg-lime-300 w-1/3 flex flex-row flex-wrap justify-center rounded-lg transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
@@ -77,7 +77,7 @@ function CheckOutView(){
                     </div>
                 </div>
 
-                <div className='fixed right-[455px] top-[245px] z-auto whitespace-nowrap text-slate-800 transition-all duration-300 hover:text-red-600'>
+                <div className='fixed left-1/2 ml-[160px] top-[311px] z-auto whitespace-nowrap text-slate-800 transition-all duration-300 hover:text-red-600'>
                         <button className='w-full' onClick={()=>{
                             context.setCheckOutActive(false)
                         }}>

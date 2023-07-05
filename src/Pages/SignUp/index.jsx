@@ -33,29 +33,29 @@ function SignUp(){
         
         <Layout>
             <section className='flex w-9/12 h-auto flex-wrap justify-center'>
-                <div className='w-[90%] bg-slate-700 rounded-lg flex flex-wrap justify-center'>
+                <div className='w-[100%] bg-slate-700 rounded-lg flex flex-wrap justify-center'>
                     {context.user.length == 0 ? 
                     
                 
                 
                         <>
                             <h2 className='w-full text-center text-white font-semibold mt-2 mb-2'>Sign Up</h2>
-                            <div className='w-[60%] mb-2 mt-2 flex flex-col h-[250px] items-center rounded-lg'>
+                            <div className='w-[100%] mb-2 mt-2 flex flex-col h-[250px] items-center rounded-lg'>
                                 <form className='h-full w-full flex flex-col items-center'>
 
-                                    <div className='flex flex-row justify-center w-[69%] h-[20%] items-center mt-4'>
+                                    <div className='flex flex-row justify-center w-[100%] h-[20%] items-center mt-4'>
                                         <label for = 'username' className='text-white'>Username:</label>
-                                        <input id = 'username' className = 'w-[225px] px-1 rounded-lg ml-2 h-full border-x border-y border-solid border-slate-200 transition-all duration-300 outline-none focus:outline-blue-500 focus:outline-2 focus:outline-offset-[-2px]' type="text" placeholder='username123' value={context.userValue} onChange={(event)=>{
+                                        <input id = 'username' className = 'w-[calc(100%-145px)] px-1 rounded-lg ml-2 h-full border-x border-y border-solid border-slate-200 transition-all duration-300 outline-none focus:outline-blue-500 focus:outline-2 focus:outline-offset-[-2px]' type="text" placeholder='username123' value={context.userValue} onChange={(event)=>{
 
                                             context.setUserValue(event.target.value);
                                             
                                         }}/>
                                     </div>
 
-                                    <div className="flex flex-row justify-center w-[69%] h-[20%] items-center mt-4 relative">
+                                    <div className="flex flex-row justify-center w-[95%] h-[20%] items-center mt-4 relative">
 
-                                        <label for= 'userPass' className='text-white'>Password:</label>
-                                        <input id='userPass' className={`w-[225px] px-1 rounded-lg ml-3 border-x border-y border-solid border-slate-200 transition-all duration-300 h-full outline-none ${context.isPassVisible ? ' focus:outline-red-500 focus:outline-2 focus:outline-offset-[-2px]' :' focus:outline-lime-500 focus:outline-2 focus:outline-offset-[-2px]'}`} type = 'password' placeholder="password123" value={context.userPass} onChange={(event)=>{
+                                        <label for= 'userPass' className='text-white ml-[-18px]'>Password:</label>
+                                        <input id='userPass' className={`w-[calc(100%-150px)] px-1 rounded-lg ml-3 border-x border-y border-solid border-slate-200 transition-all duration-300 h-full outline-none ${context.isPassVisible ? ' focus:outline-red-500 focus:outline-2 focus:outline-offset-[-2px]' :' focus:outline-lime-500 focus:outline-2 focus:outline-offset-[-2px]'}`} type = 'password' placeholder="password123" value={context.userPass} onChange={(event)=>{
                                             context.setUserPass(event.target.value)
                                         }}/>
 
@@ -75,7 +75,7 @@ function SignUp(){
                                         </button>
                                     </div>
 
-                                    <button type="button" className={`w-1/3 h-16 mt-10 rounded-lg ${context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 35 ? 'bg-lime-400 transition-all duration-300 hover:bg-lime-500 text-white' : 'bg-red-400 transition-all duration-300 hover:bg-red-600 text-white'}`} onClick={()=>{
+                                    <button type="button" className={`w-[45%] h-16 mt-10 rounded-lg ${context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 35 ? 'bg-lime-400 transition-all duration-300 hover:bg-lime-500 text-white' : 'bg-red-400 transition-all duration-300 hover:bg-red-600 text-white'}`} onClick={()=>{
                                         if(context.userValue.trim() == '' || context.userPass.trim() == '' || context.userValue.length >= 35){
                                             console.log('invalid');
 
@@ -141,7 +141,7 @@ function SignUp(){
                             <p className='w-full text-center px-2 text-lg text-white mt-2 mb-2'>If you want to check your account's information, you can do so clicking the <span className='font-semibold underline'>button</span> below</p>
 
                             <div className='w-full flex flex-row flex-wrap justify-center mb-2 mt-2'>
-                                <button className='bg-sky-400 text-white w-1/3 rounded-lg h-16 transition-all duration-300 hover:bg-sky-500'>
+                                <button className='bg-sky-400 text-white w-[50%] rounded-lg h-16 transition-all duration-300 hover:bg-sky-500'>
                                     
                                     <NavLink className='flex w-full h-full items-center justify-center' to='../MyAccount'>
                                         Check out your account!

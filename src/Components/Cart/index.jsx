@@ -18,7 +18,7 @@ function Cart(){
     }
     return(
         <>
-            <aside className= {`${contexto.isShoppingCartOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-200px)] flex-row flex-wrap fixed bg-white top-[172px] right-1/2 mr-[-185px] border border-black rounded-lg z-10 overflow-y-auto justify-center`}>
+            <aside className= {`${contexto.isShoppingCartOpen ? 'flex' : 'hidden'} w-[360px] h-[calc(100vh-180px)] flex-row flex-wrap fixed bg-white top-[180px] right-1/2 mr-[-185px] border border-black rounded-lg z-10 overflow-y-auto justify-center`}>
                 {contexto.productToAdd.length > 0 ? contexto.productToAdd.map((element)=>{
                     return (
                         <div key={element?.mainProduct?.productName} className='w-[90%] h-[355px] bg-slate-200 mt-4 mb-2 border rounded-lg flex flex-col flex-wrap items-center'>
@@ -57,21 +57,21 @@ function Cart(){
 
             {contexto.productToAdd.length > 0 ? 
             <> 
-                <div className={contexto.isShoppingCartOpen ? 'flex fixed bottom-0 right-1/2 mr-[-70px] w-[140px] h-[40px] z-40 flex-row justify-between flex-wrap' : 'hidden'}>
-                    <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 mt-1 transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
+                <div className={contexto.isShoppingCartOpen ? 'flex fixed top-[136px] right-1/2 mr-[-185px] w-[360px] h-[40px] z-40 flex-row justify-around flex-wrap' : 'hidden'}>
+                    <button className='bg-slate-200 order-1 relative rounded-lg w-12 h-10 px-2 mt-1 transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
                         
                         contexto.addingProductsToCheckOut();
                         contexto.setCheckOutActive(true);
                         contexto.closeShoppingCart()
-                    }}><CheckIcon className='w-8 absolute left-1 top-1'/></button>
-                    <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 mt-1 transition-all duration-300 hover:bg-slate-500 hover:text-white' onClick={()=>{
+                    }}><CheckIcon className='w-8 absolute left-2 top-1'/></button>
+                    <button className='bg-slate-200 order-3 relative rounded-lg w-12 h-10 px-2 mt-1 transition-all duration-300 hover:bg-slate-500 hover:text-white' onClick={()=>{
                         contexto.closeShoppingCart()
                         contexto.setTryingToDelete(false)
-                    }}><XMarkIcon className='w-8 absolute left-1 top-1'/></button>
-                    <button className='bg-slate-200 relative rounded-lg w-10 h-10 px-2 mt-1 transition-all duration-300 hover:bg-red-600 hover:text-white' onClick={()=>{
+                    }}><XMarkIcon className='w-8 absolute left-2 top-1'/></button>
+                    <button className='bg-slate-200 order-2 relative rounded-lg w-12 h-10 px-2 mt-1 transition-all duration-300 hover:bg-red-600 hover:text-white' onClick={()=>{
                         contexto.setTryingToDelete(true);
                         contexto.disablingAllButtons()
-                    }}><TrashIcon className='w-8 absolute left-1 top-1'/></button>                
+                    }}><TrashIcon className='w-8 absolute left-2 top-1'/></button>                
             
                 </div>
 
