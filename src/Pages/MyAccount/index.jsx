@@ -96,9 +96,9 @@ function MyAccount(){
                        <div className='flex w-full flex-col flex-wrap items-center'>
                             <p className='w-[75%] h-12 bg-red-50 mt-2 mb-3 rounded-lg text-center text-black flex flex-row justify-center items-center'>Username: <span className='font-semibold ml-2'> {context?.user[0]?.userName}</span></p>
                             <div className='w-[75%] flex flex-row flex-wrap justify-center relative rounded-lg h-12 items-center mt-2 mb-3'>
-                                <div className='w-[70%] bg-white flex flex-row flex-wrap h-12 justify-around items-center rounded-lg'>
+                                <div className='w-[70%] bg-white flex flex-row flex-wrap h-12 justify-around items-center rounded-lg lg:justify-end lg:px-1'>
                                     <p className='text-black rounded-tl-lg rounded-bl-lg w-20'>Password: </p>
-                                    <input type='password' readOnly value={context.user[0]?.password} className='text-black w-[90%] text-center rounded-lg'/>
+                                    <input type='password' readOnly value={context.user[0]?.password} className='text-black w-[90%] text-center rounded-lg lg:w-1/2 lg:text-left'/>
                                 </div>
                                 <div className='w-[30%]'>
                                     <button className={context.isPassVisible == false ? 'bg-white rounded-lg w-12 flex flex-row justify-center ml-4 text-black transition-all duration-300 hover:bg-lime-500 hover:text-white' : 'bg-white rounded-lg w-12 flex flex-row justify-center ml-4 text-black transition-all duration-300 hover:bg-red-500 hover:text-white'} onClick={()=>{
@@ -119,7 +119,7 @@ function MyAccount(){
                             
                             <p className='text-center w-[75%] h-24 mt-2 mb-3 px-2 bg-white text-black flex flex-col flex-wrap items-center justify-center rounded-lg'><span className='grow-0 shrink-0'>Your account was created on</span> <span className='font-semibold shrink-0 grow-0'>{context?.user[0]?.month} the {addingCorrectEnding(day)} at {context?.user[0]?.hour} and {context?.user[0]?.minutes} minutes</span> </p>
 
-                            <button className='bg-red-400 w-[45%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600' onClick={()=>{
+                            <button className='bg-red-400 w-[45%] rounded-lg mt-2 mb-3 h-12 transition-all duration-300 hover:bg-red-600 md:w-1/3 lg:w-1/4' onClick={()=>{
                                 context.setTryingToDeleteAcc(true)
                             }}>Delete account</button>
                         </div>

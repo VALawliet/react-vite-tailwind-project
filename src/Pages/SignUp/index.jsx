@@ -75,8 +75,8 @@ function SignUp(){
                                         </button>
                                     </div>
 
-                                    <button type="button" className={`w-[45%] h-16 mt-10 rounded-lg ${context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 35 ? 'bg-lime-400 transition-all duration-300 hover:bg-lime-500 text-white' : 'bg-red-400 transition-all duration-300 hover:bg-red-600 text-white'}`} onClick={()=>{
-                                        if(context.userValue.trim() == '' || context.userPass.trim() == '' || context.userValue.length >= 35){
+                                    <button type="button" className={`w-[45%] h-16 mt-10 rounded-lg ${context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 20 ? 'bg-lime-400 transition-all duration-300 hover:bg-lime-500 text-white' : 'bg-red-400 transition-all duration-300 hover:bg-red-600 text-white'}`} onClick={()=>{
+                                        if(context.userValue.trim() == '' || context.userPass.trim() == '' || context.userValue.length >= 20){
                                             console.log('invalid');
 
                                         }else{
@@ -117,7 +117,7 @@ function SignUp(){
                                             context.setUserPass('')
                                         }
                                     }}> 
-                                        {context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 35? 'Register!' : 'Invalid username or password'}
+                                        {context.userValue.trim() != '' && context.userPass.trim() != '' && context.userValue.length < 20? 'Register!' : 'Invalid username or password'}
                                     </button>
                                     
                                 </form>

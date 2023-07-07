@@ -62,7 +62,7 @@ function MyOrders(){
                                 })}
 
                                     <div key = {(index + 53255) * 84} className='w-full flex flex-row justify-center mb-2'>
-                                        <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500' onClick={()=>{
+                                        <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500 md:w-1/4' onClick={()=>{
                                             const newElement = index
                                             context.cancelingOrder(newElement)
                                         }}>Cancel</button>
@@ -117,7 +117,7 @@ function MyOrders(){
                                     })}
     
                                         <div key = {(index + 53255) * 84} className='w-full flex flex-row justify-center mb-2'>
-                                            <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500' onClick={()=>{
+                                            <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500 md:w-1/4' onClick={()=>{
                                                 const newElement = index
                                                 context.cancelingOrder(newElement)
                                             }}>Cancel</button>
@@ -129,7 +129,7 @@ function MyOrders(){
                     }else{
                         return( 
                             <React.Fragment key = {(index + 3124242) * 83824824}>
-                                <div key = {(index + 4)  * 8757} className='bg-slate-300 w-[100%] flex flex-row overflow-x-auto rounded-t-lg'>
+                                <div key = {(index + 4)  * 8757} className='bg-slate-300 w-[95%] flex flex-row overflow-x-auto rounded-t-lg'>
                                     
     
                                     {element.map((product, index)=>{
@@ -157,7 +157,7 @@ function MyOrders(){
                                     
                                 </div>
     
-                                <div key = {(index + 45) * 4324} className='bg-slate-300 w-[100%] flex flex-row flex-wrap !rounded-b-lg mb-5 justify-center'>
+                                <div key = {(index + 45) * 4324} className='bg-slate-300 w-[95%] flex flex-row flex-wrap !rounded-b-lg mb-5 justify-center'>
                                     {element.map((product, index)=>{
                                         if(typeof product == 'number'){
                                             return(
@@ -171,7 +171,7 @@ function MyOrders(){
                                     })}
     
                                         <div key = {(index + 53255) * 84} className='w-full flex flex-row justify-center mb-2'>
-                                            <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500' onClick={()=>{
+                                            <button key={(index + 36216) * 999} className='w-1/3 h-10 rounded-lg bg-red-400 text-white transition-all duration-300 hover:bg-red-500 md:w-1/4' onClick={()=>{
                                                 const newElement = index
                                                 context.cancelingOrder(newElement)
                                             }}>Cancel</button>
@@ -184,7 +184,7 @@ function MyOrders(){
                     
                 }) : <div className='bg-red-800 text-white font-semibold w-[95%] h-64 rounded-lg flex flex-wrap flex-col items-center'>
                         <span className='w-[90%] text-center mt-5'>It appears that you don't have any orders yet. We suggest you keep on looking through our products until you find the one you may be interested in</span>
-                        <button className='mt-10 bg-blue-500 w-1/2 h-12 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-700'>
+                        <button className='mt-10 bg-blue-500 w-1/2 h-12 font-semibold rounded-lg transition-all duration-300 hover:bg-blue-700 md:w-1/3'>
                             <NavLink className='flex w-full h-full justify-center items-center' to='/Home'>Return to main page</NavLink>
                         </button>
                     </div>}

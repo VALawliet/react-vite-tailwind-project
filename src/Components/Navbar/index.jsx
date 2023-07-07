@@ -86,8 +86,8 @@ function Navbar(){
 
     ]
     return(
-        <nav className="flex flex-col items-center fixed z-10 w-full py-5 px-8 text-base font-medium top-0 bg-white">
-            <ul className="flex justify-center items-center gap-3 w-full">
+        <nav className="flex flex-col items-center fixed z-10 w-full py-5 px-8 text-base font-medium top-0 bg-white lg:flex-row lg:justify-between">
+            <ul className="flex justify-center items-center gap-3 w-full lg:w-1/3 lg:justify-normal">
                 {menu1.map((element)=>{
                     return(
                         <li key = {element.name} className={element.className}>
@@ -108,11 +108,11 @@ function Navbar(){
                 })}
             </ul>
 
-            <ul className="flex items-center gap-3 flex-wrap mt-2 justify-center">
+            <ul className="flex items-center gap-3 flex-wrap mt-2 justify-center lg:mt-0">
                 {menu2.map((element)=>{
                     if(element.name == contexto_uwu?.user[0]?.userName || element.name == 'Guest'){
                         return(
-                            <li key = {element.name} className={`${element.className} basis-full grow-0 shrink-0 text-center`}>{element.name}</li>
+                            <li key = {element.name} className={`${element.className} basis-full grow-0 shrink-0 text-center lg:basis-0`}>{element.name}</li>
                         )
                     }else if(element.name == 'Check Out'){
                         return(

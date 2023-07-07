@@ -20,7 +20,7 @@ function CheckOutView(){
     return(
         <>
             
-            <div className='fixed top-1/2 left-1/2 w-[350px] h-[260px] bg-slate-400/90 ml-[-170px] mt-[-130px] flex flex-row overflow-x-auto rounded-lg overflow-y-visible'>
+            <div className='fixed top-1/2 left-1/2 w-[350px] h-[260px] bg-slate-400/90 ml-[-170px] mt-[-130px] flex flex-row overflow-x-auto rounded-lg overflow-y-visible sm:w-[450px] sm:ml-[-225px]'>
                 {context.checkOutProducts.length > 0? 
 
                     context.checkOutProducts.map((element)=>{
@@ -48,7 +48,7 @@ function CheckOutView(){
                 
                 
                 
-                : <div className='flex flex-col flex-wrap items-center'>
+                : <div className='flex flex-col flex-wrap items-center '>
                     <h3 className='w-full text-center text-xl px-2 py-2'>Huh... It seems that you haven't added any items to your checkout list. We recommend you keep on browsing through our product list until you find the items you want.</h3>
                     <button className='w-1/3 bg-lime-500 text-white rounded-lg h-12 mt-4 transition-all duration-300 hover:bg-lime-600 hover:text-white/90 hover:font-semibold' onClick={()=>{
                         context.setCheckOutActive(false)
@@ -63,7 +63,7 @@ function CheckOutView(){
 
             {context.checkOutProducts.length > 0? 
             <>
-                <div className="fixed top-1/2 left-1/2 w-[350px] h-[70px] z-60 bg-slate-400/90 ml-[-170px] mt-[135px] flex flex-col flex-wrap rounded-lg">
+                <div className="fixed top-1/2 left-1/2 w-[350px] h-[70px] z-60 bg-slate-400/90 ml-[-170px] mt-[135px] flex flex-col flex-wrap rounded-lg sm:w-[450px] sm:ml-[-225px]">
                     <h5 className='w-full text-center'>Total price: {context.checkOutSum}$</h5>
                     <div className='w-full flex flex-wrap flex-row justify-around'>
                         <button className='bg-lime-300 w-1/3 flex flex-row flex-wrap justify-center rounded-lg transition-all duration-300 hover:bg-lime-500 hover:text-white' onClick={()=>{
@@ -77,7 +77,7 @@ function CheckOutView(){
                     </div>
                 </div>
 
-                <div className='fixed left-1/2 ml-[160px] top-[311px] z-auto whitespace-nowrap text-slate-800 transition-all duration-300 hover:text-red-600'>
+                <div className='fixed left-1/2 ml-[160px] top-1/2 mt-[-145px] z-auto whitespace-nowrap text-slate-800 transition-all duration-300 hover:text-red-600 sm:ml-[205px]'>
                         <button className='w-full' onClick={()=>{
                             context.setCheckOutActive(false)
                         }}>
