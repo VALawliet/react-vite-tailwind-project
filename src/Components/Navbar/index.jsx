@@ -108,11 +108,11 @@ function Navbar(){
                 })}
             </ul>
 
-            <ul className="flex items-center gap-3 flex-wrap mt-2 justify-center lg:mt-0">
+            <ul className="flex items-center gap-3 flex-wrap mt-2 justify-center lg:mt-0 lg:w-1/2 lg:justify-end">
                 {menu2.map((element)=>{
                     if(element.name == contexto_uwu?.user[0]?.userName || element.name == 'Guest'){
                         return(
-                            <li key = {element.name} className={`${element.className} basis-full grow-0 shrink-0 text-center lg:basis-0`}>{element.name}</li>
+                            <li key = {element.name} className={`${element.className} basis-full grow-0 shrink-0 text-center lg:basis-auto`}>{element.name}</li>
                         )
                     }else if(element.name == 'Check Out'){
                         return(
